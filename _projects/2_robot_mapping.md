@@ -6,6 +6,8 @@ img: assets/img/mapping.gif
 importance: 2
 category: technical
 related_publications: false
+github_url: https://github.com/haixizhang/Robot-Mapping-Estimation-Interaction
+
 ---
 ## Project Overview
 Solo development of a comprehensive autonomous navigation software stack for TurtleBot2 platform, focusing on real-time sensor fusion and mapping capabilities. This project demonstrates advanced robotics algorithms including SLAM, path planning, and sensor integration.

@@ -49,8 +49,49 @@ horizontal: false
   
   {% for project in sorted_projects %}
     <div class="col-md-6 mb-4">
-      {% include projects.liquid %}
+      <div class="card h-100">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">
+            <a href="{{ project.url | relative_url }}" class="text-decoration-none">{{ project.title }}</a>
+          </h5>
+          <h6 class="card-subtitle mb-2 text-muted">{{ project.category | capitalize }} Project</h6>
+          <p class="card-text">{{ project.description }}</p>
+          
+          <!-- Project links section -->
+          <div class="mt-auto">
+            <div class="d-flex flex-wrap gap-1">
+              {% if project.github_url %}
+                <a href="{{ project.github_url }}" class="btn btn-outline-primary btn-sm" target="_blank">
+                  <i class="fab fa-github me-1"></i>GitHub
+                </a>
+              {% endif %}
+              {% if project.arxiv_url %}
+                <a href="{{ project.arxiv_url }}" class="btn btn-outline-info btn-sm" target="_blank">
+                  arXiv
+                </a>
+              {% endif %}
+              {% if project.pdf_url %}
+                <a href="{{ project.pdf_url }}" class="btn btn-outline-secondary btn-sm" target="_blank">
+                  PDF
+                </a>
+              {% endif %}
+              {% if project.website_url %}
+                <a href="{{ project.website_url }}" class="btn btn-outline-success btn-sm" target="_blank">
+                  Website
+                </a>
+              {% endif %}
+            </div>
+            <div class="mt-2">
+              <a href="{{ project.url | relative_url }}" class="btn btn-primary btn-sm">
+                View Details
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   {% endfor %}
 </div>
+
+
 </div>

@@ -6,6 +6,7 @@ img: assets/img/tool.png
 importance: 1
 category: technical
 related_publications: false
+github_url: https://github.com/haixizhang/Robotic-Tool-Handler
 ---
 
 ## Project Overview
@@ -44,3 +45,5 @@ Lead developer for a robotic tool handling system as part of senior design capst
 - Debugged communication signals using oscilloscopes and logic analyzers
 - Tuned system clocks and interrupt handlers to resolve timing issues
 - Optimized real-time performance through hardware-software co-design
+
+---

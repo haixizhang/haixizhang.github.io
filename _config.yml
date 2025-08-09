@@ -53,11 +53,6 @@ socials_in_search: true
 posts_in_search: true
 bib_search: true
 
-# Navigation
-nav_order:
-  - About
-  - Projects & Publications
-  - Teaching & Research Experience
 # Dimensions
 max_width: 930px
 

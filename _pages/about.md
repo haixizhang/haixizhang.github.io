@@ -27,22 +27,41 @@ latest_posts:
   limit: 3 # leave blank to include all the blog posts
 
 ---
-Hello! I'm **Haixi Zhang**, a Software Engineer specializing in **autonomous systems and robotics applications**. I hold a B.S. in Electrical & Computer Engineering from the University of Rochester and an M.Eng. in Electrical & Computer Engineering from Cornell University
+<style>
+.about-content {
+  font-size: 1.2em; /* 20% larger than default */
+  line-height: 1.7; /* Better readability */
+}
 
-I develop **machine learning and computer vision algorithms** for perception, tracking, and planning tasks using multi-modal sensor data. My expertise spans from low-level embedded systems programming to high-level AI model development, with a particular focus on making autonomous systems safer and more reliable.
+/* Make headers proportionally larger */
+.about-content h1 { font-size: 2.4em; }
+.about-content h2 { font-size: 2.0em; }
+.about-content h3 { font-size: 1.7em; }
 
-**Core Areas of Expertise:**
-- **Autonomous Systems**: State estimation, multi-object tracking, SLAM, and planning algorithms
-- **Computer Vision**: Real-time perception pipelines, object detection, depth estimation, and sensor fusion
-- **Robotics**: ROS-based systems, embedded firmware development, and hardware integration
-- **Machine Learning**: PyTorch, time series forecasting, and multi-modal learning
+/* Make bullet points larger too */
+.about-content ul li {
+  font-size: 1.1em;
+  margin-bottom: 0.5em;
+}
+</style>
 
-I'm proficient in **C++, Python, and MATLAB** with extensive experience in **PyTorch, ROS, and embedded systems**. My background spans from debugging hardware with oscilloscopes to deploying ML models in production environments. I believe in writing **robust, well-tested software** that can handle real-world uncertainties.
+<div class="about-content">
+Hello! I'm **Haixi Zhang**, a Software Engineer passionate about building intelligent systems that perceive, understand, and interact with the world. With degrees in Electrical & Computer Engineering from the University of Rochester (B.S.) and Cornell University (M.Eng.), I bridge the fascinating worlds of **autonomous systems and robotics**.
 
-I'm passionate about advancing robotics and autonomy to improve the human experience through scalable, safe deployment solutions. Whether it's developing state-of-the-art perception algorithms or integrating complex sensor systems, I enjoy tackling challenges that bridge the gap between cutting-edge research and practical applications.
+I craft **machine learning and computer vision algorithms** that enable machines to see, think, and act—transforming multi-modal sensor data into intelligent decisions for perception, tracking, and planning. My journey spans the full spectrum: from low-level embedded firmware to sophisticated AI architectures, all unified by a vision of making autonomous systems **safer, smarter, and more reliable**.
+
+**What I Bring to the Table:**
+- **🤖 Autonomous Systems**: State estimation, multi-object tracking, SLAM, and intelligent planning algorithms
+- **👁️ Computer Vision**: Real-time perception pipelines, object detection, depth estimation, and sensor fusion
+- **⚙️ Robotics Engineering**: Control theory, ROS ecosystems, embedded firmware, and seamless hardware integration  
+- **🧠 AI & Machine Learning**: PyTorch mastery, time series forecasting, multi-modal learning, and statistical analysis
+
+Fluent in **C++, Python, and MATLAB**, I've debugged circuits with oscilloscopes and deployed ML models at scale. I believe the best software is **robust, well-tested, and elegantly handles** the beautiful chaos of real-world applications.
+
+My mission? **Advancing robotics and autonomy** to enhance human experiences through thoughtful, scalable solutions. Whether architecting perception pipelines or orchestrating complex sensor networks, I thrive on challenges that transform tomorrow's possibilities into today's realities.
 
 When I'm not immersed in code or research, I'm fascinated by world history, particularly the Renaissance period through the Second Industrial Revolution. There's something captivating about how technological and social innovations from those eras laid the groundwork for today's advancements. I'm also a big fan of **Yes, Prime Minister** – the wit and political satire never get old!
-
+</div>
 ---
 
 *Interested in autonomous systems, computer vision, or just want to discuss the future of robotics? I'd love to connect!*

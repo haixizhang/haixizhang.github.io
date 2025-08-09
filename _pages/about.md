@@ -7,10 +7,11 @@ profile:
   align: right
   image: prof_pic.jpg
   image_circular: false # crops the image to make it circular
-  more_info: >
-    <p>555 your office number</p>
-    <p>123 your address street</p>
-    <p>Your City, State 12345</p>
+  more_info: 
+  #>
+  #   <p>555 your office number</p>
+  #   <p>123 your address street</p>
+  #   <p>Your City, State 12345</p>
 
 selected_papers: false # includes a list of papers marked as "selected={true}"
 social: true # includes social icons at the bottom of the page
@@ -24,9 +25,16 @@ latest_posts:
   enabled: false
   scrollable: true # adds a vertical scroll bar if there are more than 3 new posts items
   limit: 3 # leave blank to include all the blog posts
+
+<style>
+.post-content {
+  font-size: 1.1em; /* Makes text 10% larger */
+  line-height: 1.6; /* Improves readability */
+}
+</style>
 ---
 
-Hello! I'm **Haixi Zhang**, a Software Engineer specializing in **autonomous systems and robotics applications**. I hold a B.S. in Electrical & Computer Engineering from the University of Rochester (GPA: 3.86/4.0) and am currently completing my M.Eng at Cornell University (Expected May 2025).
+Hello! I'm **Haixi Zhang**, a Software Engineer specializing in **autonomous systems and robotics applications**. I hold a B.S. in Electrical & Computer Engineering from the University of Rochester and an M.Eng in Electrical & Computer Engineering from Cornell University
 
 I develop **machine learning and computer vision algorithms** for perception, tracking, and planning tasks using multi-modal sensor data. My expertise spans from low-level embedded systems programming to high-level AI model development, with a particular focus on making autonomous systems safer and more reliable.
 
@@ -40,6 +48,7 @@ I'm proficient in **C++, Python, and MATLAB** with extensive experience in **PyT
 
 I'm passionate about advancing robotics and autonomy to improve the human experience through scalable, safe deployment solutions. Whether it's developing state-of-the-art perception algorithms or integrating complex sensor systems, I enjoy tackling challenges that bridge the gap between cutting-edge research and practical applications.
 
+When I'm not immersed in code or research, I'm fascinated by world history, particularly the Renaissance period through the Second Industrial Revolution. There's something captivating about how technological and social innovations from those eras laid the groundwork for today's advancements. I'm also a big fan of Yes, Prime Minister – the wit and political satire never get old!
 ---
 
 *Interested in autonomous systems, computer vision, or just want to discuss the future of robotics? I'd love to connect!*

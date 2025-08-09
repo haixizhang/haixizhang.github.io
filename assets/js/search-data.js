@@ -65,27 +65,22 @@ ninja.data = [{
           title: 'Robotic Tool Handler',
           description: "Senior Design Project - ARM Cortex-based robotic system with real-time control",
           section: "Projects",handler: () => {
-              window.location.href = "/projects/2_robotic_tool_handler/";
+              window.location.href = "/projects/1_robotic_tool_handler/";
             },},{id: "projects-robot-mapping-estimation-and-interaction",
           title: 'Robot Mapping, Estimation, and Interaction',
           description: "Autonomous navigation system with SLAM capabilities for TurtleBot2",
           section: "Projects",handler: () => {
-              window.location.href = "/projects/3_robot_mapping/";
-            },},{id: "projects-monocular-real-time-perception-for-autonomous-driving",
-          title: 'Monocular Real-time Perception for Autonomous Driving',
-          description: "Unified perception pipeline with object tracking and depth estimation",
+              window.location.href = "/projects/2_robot_mapping/";
+            },},{id: "projects-lrhperception-monocular-real-time-perception-for-autonomous-driving",
+          title: 'LRHPerception - Monocular Real-time Perception for Autonomous Driving',
+          description: "Unified perception pipeline achieving 29 FPS with object tracking, trajectory prediction, road segmentation, and depth estimation",
           section: "Projects",handler: () => {
-              window.location.href = "/projects/4_monocular_perception/";
+              window.location.href = "/projects/3_monocular_perception/";
             },},{id: "projects-",
           title: '',
           description: "",
           section: "Projects",handler: () => {
-              window.location.href = "/projects/5_time_series_forecasting/";
-            },},{id: "projects-project-7",
-          title: 'project 7',
-          description: "with background image",
-          section: "Projects",handler: () => {
-              window.location.href = "/projects/7_project/";
+              window.location.href = "/projects/4_time_series_forecasting/";
             },},{
         id: 'social-email',
         title: 'email',

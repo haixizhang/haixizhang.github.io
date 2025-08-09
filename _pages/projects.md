@@ -21,7 +21,7 @@ horizontal: false
       <div class="card-body">
         <div class="row">
           <div class="col-md-8">
-            <h4 class="card-title">🚀 Fast Robot Navigation & Control <span class="badge bg-primary ms-2">Featured</span></h4>
+            <h4 class="card-title">Fast Robot Navigation & Control</h4>
             <h6 class="card-subtitle mb-2 text-muted">Technical Work - Embedded Systems & Robotics</h6>
             <p class="card-text">
               Advanced robotic control system implementing real-time navigation and obstacle avoidance using embedded systems programming. This project features a comprehensive documentation website with detailed implementation guides and results.

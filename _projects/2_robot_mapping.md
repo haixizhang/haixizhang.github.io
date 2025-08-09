@@ -2,7 +2,7 @@
 layout: page
 title: Robot Mapping, Estimation, and Interaction
 description: Autonomous navigation system with SLAM capabilities for TurtleBot2
-img: assets/img/mapping.gif
+img: /assets/img/mapping.gif
 importance: 2
 category: technical
 related_publications: false
@@ -65,51 +65,6 @@ Solo development of a comprehensive autonomous navigation software stack for Tur
 - Met strict real-time requirements for mobile robot navigation
 - Optimized algorithms for embedded computing constraints
 - Maintained 20Hz control loop frequency
-
-## Technical Deep Dive
-
-### EKF SLAM Implementation
-```cpp
-// Simplified EKF prediction step
-void EKFSlam::predict(const ControlInput& u, double dt) {
-    // State prediction
-    state_.x += u.linear_vel * cos(state_.theta) * dt;
-    state_.y += u.linear_vel * sin(state_.theta) * dt;
-    state_.theta += u.angular_vel * dt;
-    
-    // Covariance prediction
-    updateCovarianceMatrix(u, dt);
-}
-```
-
-### Occupancy Grid Mapping
-- **Probabilistic Updates:** Log-odds representation for efficient updates
-- **Ray Casting:** Bresenham's algorithm for laser ray tracing
-- **Memory Management:** Dynamic grid expansion for large environments
-
-### A* Path Planning
-- **Heuristic:** Euclidean distance with obstacle inflation
-- **Optimization:** Hierarchical planning for computational efficiency
-- **Smoothing:** Post-processing for smooth, drivable paths
-
-## Technologies Used
-
-**Core Technologies:**
-- **ROS:** Real-time robotics framework
-- **C++:** High-performance implementation
-- **Embedded Linux:** Platform operating system
-- **CMake:** Build system management
-
-**Algorithms & Libraries:**
-- **Eigen:** Linear algebra computations
-- **PCL:** Point cloud processing
-- **OpenCV:** Image processing utilities
-- **Boost:** C++ utility libraries
-
-**Hardware Integration:**
-- **LiDAR:** Sensor data processing and filtering
-- **IMU:** Inertial measurement integration
-- **Motors:** Differential drive control
 
 ## Results & Validation
 

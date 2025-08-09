@@ -21,16 +21,11 @@ horizontal: false
       <div class="card-body">
         <div class="row">
           <div class="col-md-8">
-            <h4 class="card-title">
-              <a href="https://haixizhang.github.io/FastRobot/" target="_blank" class="text-decoration-none">
-                🚀 Fast Robot Navigation & Control <span class="badge bg-primary ms-2">Featured</span>
-              </a>
-            </h4>
+            <h4 class="card-title">🚀 Fast Robot Navigation & Control <span class="badge bg-primary ms-2">Featured</span></h4>
             <h6 class="card-subtitle mb-2 text-muted">Technical Work - Embedded Systems & Robotics</h6>
             <p class="card-text">
               Advanced robotic control system implementing real-time navigation and obstacle avoidance using embedded systems programming. This project features a comprehensive documentation website with detailed implementation guides and results.
-            </p>
-          </div>
+            </p>     </div>
           <div class="col-md-4 d-flex align-items-center justify-content-center">
             <a href="https://haixizhang.github.io/FastRobot/" target="_blank" class="btn btn-primary btn-lg">
               <i class="fas fa-external-link-alt me-2"></i>View Project Website

@@ -76,11 +76,11 @@ ninja.data = [{
           description: "Unified perception pipeline achieving 29 FPS with object tracking, trajectory prediction, road segmentation, and depth estimation",
           section: "Projects",handler: () => {
               window.location.href = "/projects/3_monocular_perception/";
-            },},{id: "projects-",
-          title: '',
-          description: "",
+            },},{id: "projects-spatiotemporal-linear-universal-multivariate-time-series-forecasting",
+          title: 'Spatiotemporal-Linear - Universal Multivariate Time Series Forecasting',
+          description: "Novel forecasting model using Residual Neural Networks with Spatial Attention",
           section: "Projects",handler: () => {
-              window.location.href = "/projects/4_time_series_forecasting/";
+              window.location.href = "/projects/4_spatiotemporal_linear/";
             },},{
         id: 'social-email',
         title: 'email',

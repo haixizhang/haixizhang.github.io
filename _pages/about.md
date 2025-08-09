@@ -2,7 +2,7 @@
 layout: about
 title: about
 permalink: /
-subtitle: Embedded Engineer | Software Engineer | Autonomous Systems & Robotics | University of Rochester | Cornell University
+subtitle: Embedded & Software Engineer | Autonomous Systems & Robotics | University of Rochester | Cornell University
 profile:
   align: right
   image: prof_pic.jpg
@@ -26,15 +26,15 @@ latest_posts:
   scrollable: true # adds a vertical scroll bar if there are more than 3 new posts items
   limit: 3 # leave blank to include all the blog posts
 
+---
 <style>
 .post-content {
   font-size: 1.1em; /* Makes text 10% larger */
   line-height: 1.6; /* Improves readability */
 }
 </style>
----
 
-Hello! I'm **Haixi Zhang**, a Software Engineer specializing in **autonomous systems and robotics applications**. I hold a B.S. in Electrical & Computer Engineering from the University of Rochester and an M.Eng in Electrical & Computer Engineering from Cornell University
+Hello! I'm **Haixi Zhang**, a Software Engineer specializing in **autonomous systems and robotics applications**. I hold a B.S. in Electrical & Computer Engineering from the University of Rochester and an M.Eng. in Electrical & Computer Engineering from Cornell University
 
 I develop **machine learning and computer vision algorithms** for perception, tracking, and planning tasks using multi-modal sensor data. My expertise spans from low-level embedded systems programming to high-level AI model development, with a particular focus on making autonomous systems safer and more reliable.
 

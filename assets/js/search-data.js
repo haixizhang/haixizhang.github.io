@@ -16,9 +16,9 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/projects/";
           },
-        },{id: "nav-teaching-and-research-experience",
-          title: "Teaching and Research Experience",
-          description: "Materials for courses you taught. Replace this text with your description.",
+        },{id: "nav-teaching-amp-research-experience",
+          title: "Teaching &amp; Research Experience",
+          description: "My experience in research assistance and teaching at University of Rochester",
           section: "Navigation",
           handler: () => {
             window.location.href = "/teaching/";

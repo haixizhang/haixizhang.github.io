@@ -46,9 +46,7 @@ horizontal: false
     <div class="col-md-6 mb-4">
       <div class="card h-100">
         <div class="card-body d-flex flex-column">
-          <h5 class="card-title">
-            <a href="{{ project.url | relative_url }}" class="text-decoration-none">{{ project.title }}</a>
-          </h5>
+          <h5 class="card-title">{{ project.title }}</h5>
           <h6 class="card-subtitle mb-2 text-muted">{{ project.category | capitalize }} Project</h6>
           <p class="card-text">{{ project.description }}</p>
           

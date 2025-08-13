@@ -2,7 +2,7 @@
 layout: page
 title: Robot Mapping, Estimation, and Interaction
 description: Autonomous navigation system with SLAM capabilities for TurtleBot2
-img: assets/img/mapping.gif
+img: mapping.gif
 importance: 2
 category: technical
 related_publications: false

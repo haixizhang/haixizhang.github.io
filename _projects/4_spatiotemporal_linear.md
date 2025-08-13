@@ -2,7 +2,7 @@
 layout: page
 title: Spatiotemporal-Linear - Universal Multivariate Time Series Forecasting
 description: Novel forecasting model using Residual Neural Networks with Spatial Attention
-img: assets/img/forecasting.png
+img: forecasting.png
 importance: 4
 category: research
 arxiv_url: https://arxiv.org/abs/2312.14869

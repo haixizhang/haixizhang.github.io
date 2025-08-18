@@ -2,7 +2,7 @@
 layout: page
 title: Robotic Tool Handler
 description: Senior Design Project - ARM Cortex-based robotic system with real-time control
-img: /assets/img/1.png
+img: /assets/img/tool.png
 importance: 1
 category: technical
 related_publications: false

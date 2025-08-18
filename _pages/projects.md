@@ -45,10 +45,14 @@ horizontal: false
   {% for project in sorted_projects %}
     <div class="col-md-6 mb-4">
       <div class="card h-100">
+        {% if project.img %}
+          <img src="{{ project.img | relative_url }}" class="card-img-top" alt="{{ project.title }}">
+        {% endif %}
         <div class="card-body d-flex flex-column">
           <h5 class="card-title">{{ project.title }}</h5>
           <h6 class="card-subtitle mb-2 text-muted">{{ project.category | capitalize }} Project</h6>
           <p class="card-text">{{ project.description }}</p>
+
           
           <!-- Project links section -->
           <div class="mt-auto">

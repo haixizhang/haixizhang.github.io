@@ -23,3 +23,11 @@ $max-content-width: {{ site.max_width }};
   "tabler-icons/tabler-icons-filled.scss",
   "tabler-icons/tabler-icons-outline.scss"
 ;
+
+/* Project card images */
+.project-img {
+  object-fit: cover;
+  width: 100%;
+  height: 200px;   /* consistent size */
+  border-bottom: 1px solid #ddd;
+}

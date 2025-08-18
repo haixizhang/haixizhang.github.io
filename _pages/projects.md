@@ -47,7 +47,7 @@ horizontal: false
     <div class="col-md-6 mb-4">
       <div class="card h-100">
         {% if project.img %}
-          <img src="{{ project.img | relative_url }}" class="card-img-top" alt="{{ project.title }}">
+          <img src="{{ project.img | relative_url }}" class="card-img-top project-img" alt="{{ project.title }}">
         {% endif %}
         <div class="card-body d-flex flex-column">
           <h5 class="card-title">{{ project.title }}</h5>

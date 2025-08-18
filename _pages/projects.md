@@ -18,6 +18,7 @@ horizontal: false
 <div class="row mb-4">
   <div class="col-12">
     <div class="card border-primary">
+      <img src="/assets/img/fast-robot.jpg" class="card-img-top project-img" alt="Fast Robot Navigation & Control">
       <div class="card-body">
         <div class="row">
           <div class="col-md-8">

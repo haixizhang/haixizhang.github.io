@@ -2,62 +2,44 @@
 layout: about
 title: about
 permalink: /
-subtitle: Embedded & Software Engineer | Autonomous Systems & Robotics | University of Rochester | Cornell University
+subtitle: Embedded Systems & Software-Hardware Co-Design | Robotics & Autonomous Systems
 profile:
   align: right
   image: prof_pic.jpg
-  image_circular: false # crops the image to make it circular
-  more_info: 
-  #>
-  #   <p>555 your office number</p>
-  #   <p>123 your address street</p>
-  #   <p>Your City, State 12345</p>
-
-selected_papers: false # includes a list of papers marked as "selected={true}"
-social: true # includes social icons at the bottom of the page
-
-announcements:
-  enabled: false # includes a list of news items
-  scrollable: true # adds a vertical scroll bar if there are more than 3 news items
-  limit: 5 # leave blank to include all the news in the `_news` folder
-
-latest_posts:
-  enabled: false
-  scrollable: true # adds a vertical scroll bar if there are more than 3 new posts items
-  limit: 3 # leave blank to include all the blog posts
-
+  image_circular: false
+selected_papers: false
+social: true
 ---
-Hello! I'm **Haixi Zhang**, a Software Engineer passionate about building intelligent systems that perceive, understand, and interact with the world. With degrees in Electrical & Computer Engineering from the University of Rochester (B.S.) and Cornell University (M.Eng.), I bridge the fascinating worlds of **autonomous systems and robotics**.
 
-I craft **machine learning and computer vision algorithms** that enable machines to see, think, and act—transforming multi-modal sensor data into intelligent decisions for perception, tracking, and planning. My journey spans the full spectrum: from low-level embedded firmware to sophisticated AI architectures, all unified by a vision of making autonomous systems **safer, smarter, and more reliable**.
+Hello! I'm **Haixi Zhang**, an Embedded & Software Engineer passionate about building intelligent robotic systems that seamlessly integrate **hardware and software**. With degrees in Electrical & Computer Engineering from the University of Rochester (B.S.) and Cornell University (M.Eng.), I specialize in **embedded systems, real-time robotics, and software–hardware co-design**.
 
-**What I Bring to the Table:**
-- **🤖 Autonomous Systems**: State estimation, multi-object tracking, SLAM, and intelligent planning algorithms
-- **👁️ Computer Vision**: Real-time perception pipelines, object detection, depth estimation, and sensor fusion
-- **⚙️ Robotics Engineering**: Control theory, ROS ecosystems, embedded firmware, and seamless hardware integration  
-- **🧠 AI & Machine Learning**: PyTorch mastery, time series forecasting, multi-modal learning, and statistical analysis
+I thrive at the intersection of **low-level firmware and high-level algorithms**: writing optimized C/C++ for ARM Cortex microcontrollers, deploying Linux/ROS pipelines on embedded platforms, and co-designing systems where perception, control, and planning must work together under strict latency and reliability constraints.  
 
-Fluent in **C++, Python, and MATLAB**, I've debugged circuits with oscilloscopes and deployed ML models at scale. I believe the best software is **robust, well-tested, and elegantly handles** the beautiful chaos of real-world applications.
+**Core Strengths:**
+- **⚡ Embedded Systems & Real-Time Software**  
+  – ARM Cortex MCUs, Embedded Linux, RTOS  
+  – Real-time motion control, sensor drivers, and SIL/HIL testing  
+  – Debugging with oscilloscopes, logic analyzers, and low-level protocol tools  
 
-My mission? **Advancing robotics and autonomy** to enhance human experiences through thoughtful, scalable solutions. Whether architecting perception pipelines or orchestrating complex sensor networks, I thrive on challenges that transform tomorrow's possibilities into today's realities.
+- **🤝 Software-Hardware Co-Design**  
+  – Bridging circuits, firmware, and robotics algorithms  
+  – Mixed-signal integration (ToF, IMU, LiDAR, BLE, TCP/IP)  
+  – Robust, test-driven designs deployed on embedded platforms  
 
-When I'm not immersed in code or research, I'm fascinated by world history, particularly the Renaissance period through the Second Industrial Revolution. There's something captivating about how technological and social innovations from those eras laid the groundwork for today's advancements. I'm also a big fan of **Yes, Prime Minister** – the wit and political satire never get old!
+- **🤖 Robotics & Autonomy**  
+  – ROS-based mapping, SLAM, and planning pipelines  
+  – Visual SLAM, sensor fusion, EKF/optimization-based localization  
+  – Real-time perception and object detection (YOLO, depth estimation)  
+
+- **🧠 Applied AI/ML**  
+  – PyTorch, computer vision, and multimodal perception  
+  – Time series forecasting and statistical modeling  
+  – Scaling ML pipelines with HPC, Docker, and Kubernetes  
+
+I believe that the best engineering solutions **unite hardware reliability with software intelligence**. Whether I’m designing an embedded driver, optimizing a motion-planning pipeline, or validating a robotic arm with SIL/HIL testing, I approach each project with a focus on **robustness, performance, and precision**.  
+
+When I’m not immersed in code or research, I’m fascinated by world history, particularly the Renaissance period through the Second Industrial Revolution. There’s something captivating about how technological and social innovations from those eras laid the groundwork for today’s advancements. I’m also a big fan of **Yes, Prime Minister** – the wit and political satire never get old! 
 
 ---
 
-*Interested in autonomous systems, computer vision, or just want to discuss the future of robotics? I'd love to connect!*
-
-<style>
-.post-content {
-  font-size: 1.15em;
-  line-height: 1.65;
-}
-
-.post-content p {
-  margin-bottom: 1.2em;
-}
-
-.post-content ul li {
-  margin-bottom: 0.5em;
-}
-</style>
+*Interested in autonomous systems, computer vision, or just want to discuss the future of robotics? I’d love to connect!*

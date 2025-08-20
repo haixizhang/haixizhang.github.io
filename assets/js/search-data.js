@@ -81,6 +81,11 @@ ninja.data = [{
           description: "Novel forecasting model using Residual Neural Networks with Spatial Attention",
           section: "Projects",handler: () => {
               window.location.href = "/projects/4_spatiotemporal_linear/";
+            },},{id: "projects-",
+          title: '',
+          description: "",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/5_2025-uwiae-gpf.md/";
             },},{
         id: 'social-email',
         title: 'email',

@@ -3,7 +3,7 @@ layout: page
 title: Robotic Tool Handler
 description: Senior Design Project - ARM Cortex-based robotic system with real-time control
 img: /assets/img/tool.png
-importance: 1
+importance: 2
 category: technical
 related_publications: false
 github_url: https://github.com/haixizhang/Robotic-Tool-Handler

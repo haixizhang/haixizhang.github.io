@@ -3,7 +3,7 @@ layout: page
 title: Robot Mapping, Estimation, and Interaction
 description: Autonomous navigation system with SLAM capabilities for TurtleBot2
 img: /assets/img/mapping.gif
-importance: 2
+importance: 3
 category: technical
 related_publications: false
 github_url: https://github.com/haixizhang/Robot-Mapping-Estimation-Interaction

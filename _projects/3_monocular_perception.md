@@ -3,7 +3,7 @@ layout: page
 title: LRHPerception - Monocular Real-time Perception for Autonomous Driving
 description: Unified perception pipeline achieving 29 FPS with object tracking, trajectory prediction, road segmentation, and depth estimation
 img: /assets/img/mono.gif
-importance: 3
+importance: 4
 category: research
 related_publications: true
 github_url: https://github.com/EnisZuo/LRHPerception

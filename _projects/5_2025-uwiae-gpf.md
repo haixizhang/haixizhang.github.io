@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Point Forecasts to Probability Clouds — Probabilistic Electricity Price Forecasting
-description: UWIAE-GPF: Generative probabilistic forecasting of day-ahead electricity prices with calibrated uncertainty
+description: Generative probabilistic forecasting of day-ahead electricity prices with calibrated uncertainty
 img: /assets/img/uwiae-gpf.png
 importance: 1
 category: research

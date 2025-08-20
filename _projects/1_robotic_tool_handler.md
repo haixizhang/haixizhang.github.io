@@ -15,7 +15,7 @@ Lead developer for a robotic tool handling system as part of senior design capst
 **Duration:** January 2024 – June 2024  
 **Role:** Lead Developer  
 **Team Size:** 3 ECE members and 4 ME members
-**Supervisor:** [Thomas M. Howard](https://www.hajim.rochester.edu/ece/people/faculty/howard_tom/)
+**Supervisor:** Professor [Thomas M. Howard](https://www.hajim.rochester.edu/ece/people/faculty/howard_tom/)
 **Institution:** University of Rochester
 
 ## Technical Implementation

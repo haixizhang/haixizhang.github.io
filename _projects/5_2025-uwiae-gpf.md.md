@@ -6,14 +6,17 @@ img: /assets/img/uwiae-gpf.png
 importance: 1
 category: research
 related_publications: false
-pdf_url: /assets/pdfs/uwiae-gpf-poster.pdf
+pdf_url: /assets/pdf/uwiae-gpf-poster.pdf
 tags: [Time Series, Probabilistic Forecasting, Energy Markets, PyTorch, Deep Learning]
 ---
 
-![Project thumbnail](/assets/img/uwiae-gpf.png)
-
 ## Overview
 I built a **probabilistic forecasting pipeline** that turns single-point predictions of day-ahead electricity prices into **scenario clouds** with calibrated uncertainty. The model—**UWIAE-GPF (Univariate Weak-Innovation Autoencoder for Generative Probabilistic Forecasting)**—learns spike-and-tail behavior typical in electricity markets and produces both point trajectories and **risk bands** (90/50/10% intervals).
+
+**Duration:** Jan 2025 – May 2025  
+**Role:** Solo Developer
+**Institution:** Cornell University
+**Supervisor:** Professor [Lang Tong](https://www.engineering.cornell.edu/people/lang-tong/)
 
 **Why it matters:** Operators and traders need not only *accurate* forecasts but also *confidence bounds* to plan for best/worst cases.
 

@@ -7,7 +7,7 @@ importance: 1
 category: research
 related_publications: false
 pdf_url: /assets/pdf/uwiae-gpf-poster.pdf
-tags: [Time Series, Probabilistic Forecasting, Energy Markets, PyTorch, Deep Learning]
+
 ---
 
 ## Overview
@@ -49,3 +49,5 @@ I built a **probabilistic forecasting pipeline** that turns single-point predict
 ## Artifacts
 - **Poster (PDF):** [Download](/assets/pdfs/uwiae-gpf-poster.pdf)
 - **Contact:** haixizhang02@gmail.com
+
+---

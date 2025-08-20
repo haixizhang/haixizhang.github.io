@@ -85,7 +85,7 @@ ninja.data = [{
           title: '',
           description: "",
           section: "Projects",handler: () => {
-              window.location.href = "/projects/5_2025-uwiae-gpf.md/";
+              window.location.href = "/projects/5_2025-uwiae-gpf/";
             },},{
         id: 'social-email',
         title: 'email',

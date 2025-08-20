@@ -81,9 +81,9 @@ ninja.data = [{
           description: "Novel forecasting model using Residual Neural Networks with Spatial Attention",
           section: "Projects",handler: () => {
               window.location.href = "/projects/4_spatiotemporal_linear/";
-            },},{id: "projects-",
-          title: '',
-          description: "",
+            },},{id: "projects-point-forecasts-to-probability-clouds-probabilistic-electricity-price-forecasting",
+          title: 'Point Forecasts to Probability Clouds — Probabilistic Electricity Price Forecasting',
+          description: "Generative probabilistic forecasting of day-ahead electricity prices with calibrated uncertainty",
           section: "Projects",handler: () => {
               window.location.href = "/projects/5_2025-uwiae-gpf/";
             },},{

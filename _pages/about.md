@@ -2,7 +2,7 @@
 layout: about
 title: about
 permalink: /
-subtitle: Embedded Systems & Software-Hardware Co-Design | Robotics & Autonomous Systems
+subtitle: Robotics & Perception | Real-time CV & Applied ML | Sensor Data & Systems Engineering
 profile:
   align: right
   image: prof_pic.jpg
@@ -10,33 +10,36 @@ profile:
 selected_papers: false
 social: true
 ---
+Hi! I’m **Haixi Zhang**, a **Robotics / Perception / Applied ML / Computer Vision Engineer**. I build **real-world sensor-driven systems**—from data pipelines and core algorithms to performance optimization and deployment on production/edge platforms. I hold a **B.S. in Electrical & Computer Engineering** (University of Rochester) and an **M.Eng. in Electrical & Computer Engineering** (Cornell University), and I’m currently based in **San Jose, CA**.
 
-Hello! I'm **Haixi Zhang**, an Embedded & Software Engineer passionate about building intelligent robotic systems that seamlessly integrate **hardware and software**. With degrees in Electrical & Computer Engineering from the University of Rochester (B.S.) and Cornell University (M.Eng.), I specialize in **embedded systems, real-time robotics, and software–hardware co-design**.
+My focus is practical: turning high-rate sensor streams into reliable signals and models that run **in real time**, are **testable**, and can be **shipped**.
 
-I thrive at the intersection of **low-level firmware and high-level algorithms**: writing optimized C/C++ for ARM Cortex microcontrollers, deploying Linux/ROS pipelines on embedded platforms, and co-designing systems where perception, control, and planning must work together under strict latency and reliability constraints.  
+### What I do
+- **Sensor data & pipelines**
+  - Build ETL, synchronization, and validation workflows for multi-sensor logs (camera / LiDAR / IMU / CAN)
+  - Curate datasets and define evaluation protocols for training, regression testing, and debugging
+  - Automate large-scale processing with workflow tools (e.g., Airflow) and containerized jobs (Docker/K8s)
 
-**Core Strengths:**
-- **⚡ Embedded Systems & Real-Time Software**  
-  – ARM Cortex MCUs, Embedded Linux, RTOS  
-  – Real-time motion control, sensor drivers, and SIL/HIL testing  
-  – Debugging with oscilloscopes, logic analyzers, and low-level protocol tools  
+- **Real-time computer vision & applied ML**
+  - Develop perception modules such as detection, tracking, depth-related tasks, and feature extraction using **Python + OpenCV + PyTorch**
+  - Train and evaluate models with clean metrics, ablations, and failure-case analysis (day/night, noise, motion, domain shifts)
+  - Package models for deployment and iterate using an end-to-end data → model → evaluation loop
 
-- **🤝 Software-Hardware Co-Design**  
-  – Bridging circuits, firmware, and robotics algorithms  
-  – Mixed-signal integration (ToF, IMU, LiDAR, BLE, TCP/IP)  
-  – Robust, test-driven designs deployed on embedded platforms  
+- **Signal processing & time-series analysis**
+  - Design filtering and time-series pipelines for sensor signals (denoising, feature extraction, temporal modeling)
+  - Combine classical methods with learning-based approaches when it improves robustness and interpretability
 
-- **🤖 Robotics & Autonomy**  
-  – ROS-based mapping, SLAM, and planning pipelines  
-  – Visual SLAM, sensor fusion, EKF/optimization-based localization  
-  – Real-time perception and object detection (YOLO, depth estimation)  
+- **Performance-oriented software engineering**
+  - Write production C++/Python on Linux; profile and optimize for latency/throughput and resource usage
+  - Use multiprocessing/multithreading where appropriate; accelerate with GPU when needed
+  - Deploy with **ONNX / TensorRT** on edge/production platforms and integrate into larger C++ systems
 
-- **🧠 Applied AI/ML**  
-  – PyTorch, computer vision, and multimodal perception  
-  – Time series forecasting and statistical modeling  
-  – Scaling ML pipelines with HPC, Docker, and Kubernetes  
+- **Robotics systems**
+  - Integrate perception into ROS/ROS2 systems (TF2, catkin/colcon) with reliable interfaces and testing
+  - Work with autonomy foundations: estimation (EKF-style), mapping (occupancy grids), and planning (A*)
 
-I believe that the best engineering solutions **unite hardware reliability with software intelligence**. Whether I’m designing an embedded driver, optimizing a motion-planning pipeline, or validating a robotic arm with SIL/HIL testing, I approach each project with a focus on **robustness, performance, and precision**.  
+
+I’m comfortable contributing across the stack—from data and modeling to integration and benchmarking—and I enjoy collaborating with cross-functional teams to improve end-to-end system quality.
 
 When I’m not immersed in code or research, I’m fascinated by world history, particularly the Renaissance period through the Second Industrial Revolution. There’s something captivating about how technological and social innovations from those eras laid the groundwork for today’s advancements. I’m also a big fan of **Yes, Prime Minister** – the wit and political satire never get old! 
 

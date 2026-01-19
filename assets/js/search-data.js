@@ -16,12 +16,12 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/projects/";
           },
-        },{id: "nav-teaching-amp-research-experience",
-          title: "Teaching &amp; Research Experience",
-          description: "My experience in research assistance and teaching at University of Rochester",
+        },{id: "nav-experience",
+          title: "Experience",
+          description: "Industry, research, and teaching experience",
           section: "Navigation",
           handler: () => {
-            window.location.href = "/teaching/";
+            window.location.href = "/experience/";
           },
         },{id: "post-google-gemini-updates-flash-1-5-gemma-2-and-project-astra",
         

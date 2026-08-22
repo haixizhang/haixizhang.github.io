@@ -10,9 +10,23 @@ profile:
 selected_papers: false
 social: true
 ---
-Hi! I’m **Haixi Zhang**, a **Robotics / Perception / Applied ML / Computer Vision Engineer**. I build **real-world sensor-driven systems**—from data pipelines and core algorithms to performance optimization and deployment on production/edge platforms. I hold a **B.S. in Electrical & Computer Engineering** (University of Rochester) and an **M.Eng. in Electrical & Computer Engineering** (Cornell University), and I’m currently based in **San Jose, CA**.
+Hi! I’m **Haixi Zhang**, a **Robotics / Perception / Applied ML / Computer Vision Engineer** who builds and ships real-world sensor systems. I work across the complete production path—from fleet-scale data and geometric modeling to neural networks, accelerated inference, and onboard C++ integration.
 
-My focus is practical: turning high-rate sensor streams into reliable signals and models that run **in real time**, are **testable**, and can be **shipped**.
+Most recently, I independently developed and deployed two neural sensor-calibration systems spanning **camera–LiDAR** and **LiDAR–LiDAR** alignment. The systems recover rotational perturbations of up to **10° to sub-degree residuals** and run through production **TensorRT/C++** pipelines. I hold a **B.S. in Electrical & Computer Engineering** from the University of Rochester and an **M.Eng. in Electrical & Computer Engineering** from Cornell University, and I’m based in **San Jose, CA**.
+
+<a class="home-feature home-feature--suite" href="{{ '/projects/' | relative_url }}">
+  <span class="home-feature__label">FEATURED PRODUCTION WORK</span>
+  <strong>Two Neural Calibration Systems—Built and Shipped End to End</strong>
+  <span>Production camera–LiDAR and LiDAR–LiDAR calibration, from fleet-scale sensor data to sub-degree recovery and accelerated onboard inference.</span>
+  <span class="home-feature__results">
+    <em><b>2</b> deployed systems</em>
+    <em><b>500+ GB</b> sensor data</em>
+    <em><b>10° → &lt;1°</b> recovery</em>
+    <em><b>TRT + C++</b> onboard stack</em>
+  </span>
+  <span class="home-feature__systems"><em>LCCNet · Camera ↔ LiDAR</em><em>LiLiNet · LiDAR ↔ LiDAR</em></span>
+  <b>Explore the systems →</b>
+</a>
 
 ### What I do
 - **Sensor data & pipelines**

@@ -22,6 +22,8 @@ nav_order: 4
 - Developed and productized perception/ML components with an end-to-end loop: data → training → evaluation → deployment
 - Deployed models to edge/production stacks using **ONNX / TensorRT**, and supported integration into C++/Linux systems with performance profiling and optimization
 
+**Selected Production Systems:** independently developed and deployed a neural sensor-calibration portfolio spanning [camera–LiDAR LCCNet]({{ '/projects/lccnet-calibration/' | relative_url }}) and [LiDAR–LiDAR LiLiNet]({{ '/projects/lilinet-calibration/' | relative_url }}). Owned the complete data-to-deployment lifecycle across fleet-scale sensor processing, geometric modeling, distributed training, ONNX/TensorRT optimization, onboard C++ integration, calibration-health diagnostics, and sensor-rig generation. Achieved sub-degree held-out performance across both systems, including a **+62.5% improvement in LiDAR–LiDAR rotational calibration**.
+
 ---
 
 ## Research Experience

@@ -1,0 +1,54 @@
+# Local preview overrides for Windows environments without ImageMagick/Jupyter.
+# Use with: bundle exec jekyll serve --config _config.yml,_config.preview.yml
+plugins:
+  - jekyll-archives-v2
+  - jekyll-email-protect
+  - jekyll-feed
+  - jekyll-get-json
+  - jekyll-link-attributes
+  - jekyll-minifier
+  - jekyll-paginate-v2
+  - jekyll-regex-replace
+  - jekyll/scholar
+  - jekyll-sitemap
+  - jekyll-tabs
+  - jekyll-terser
+  - jekyll-toc
+  - jekyll-twitter-plugin
+
+imagemagick:
+  enabled: false
+
+# Preserve the production exclusions and additionally skip the example notebook,
+# whose converter requires a local Jupyter installation.
+exclude:
+  - bin/
+  - CONTRIBUTING.md
+  - CUSTOMIZE.md
+  - Dockerfile
+  - docker-compose.yml
+  - docker-compose-slim.yml
+  - FAQ.md
+  - Gemfile
+  - Gemfile.lock
+  - INSTALL.md
+  - LICENSE
+  - lighthouse_results/
+  - package.json
+  - package-lock.json
+  - _pages/about_einstein.md
+  - purgecss.config.js
+  - README.md
+  - readme_preview/
+  - vendor
+  - _posts/
+  - _pages/404.md
+  - _pages/blog.md
+  - _pages/books.md
+  - _pages/cv.md
+  - _pages/dropdown.md
+  - _pages/news.md
+  - _pages/profiles.md
+  - _pages/publications.md
+  - _pages/repositories.md
+  - assets/jupyter/

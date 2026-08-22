@@ -1,0 +1,127 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="660" viewBox="0 0 1280 660" role="img" aria-labelledby="title desc">
+  <title id="title">LCCNet model architecture</title>
+  <desc id="desc">Paper-style diagram of the camera and LiDAR preprocessing, dual encoders, camera conditioning, cross-modal fusion, rotation and translation heads, and SE3 correction composition.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#40546a"/>
+    </marker>
+    <style>
+      .title{font:700 25px Arial,sans-serif;fill:#152535}.subtitle{font:400 13px Arial,sans-serif;fill:#607387}
+      .section{font:700 12px Arial,sans-serif;letter-spacing:1.4px;fill:#52677a}.blockTitle{font:700 16px Arial,sans-serif;fill:#142536}
+      .blockText{font:400 12px Arial,sans-serif;fill:#53677a}.tensor{font:italic 13px Georgia,serif;fill:#283b4d}
+      .box{stroke-width:1.3}.input{fill:#eef6ff;stroke:#7aaee6}.geom{fill:#fff6dd;stroke:#d7aa49}.encoder{fill:#eef9f2;stroke:#63aa7c}
+      .fusion{fill:#f4efff;stroke:#9574d1}.head{fill:#fff0f3;stroke:#cf7084}.output{fill:#eaf8f7;stroke:#4b9e99}
+      .loss{fill:#f7f8fa;stroke:#aeb9c4}.line{fill:none;stroke:#40546a;stroke-width:1.55;marker-end:url(#arrow)}
+      .dash{fill:none;stroke:#7b8794;stroke-width:1.35;stroke-dasharray:6 5;marker-end:url(#arrow)}
+      .branch{fill:none;stroke:#40546a;stroke-width:1.3}.note{font:600 11px Arial,sans-serif;fill:#697b8c}
+    </style>
+  </defs>
+
+  <rect width="1280" height="660" rx="18" fill="#ffffff"/>
+  <text x="38" y="42" class="title">LCCNet — Geometry-Aware Camera–LiDAR Residual Calibration</text>
+  <text x="38" y="66" class="subtitle">The network predicts ΔT rather than an absolute pose; training and deployment share the same projection and composition contract.</text>
+
+  <text x="42" y="96" class="section">INPUTS</text>
+  <text x="244" y="96" class="section">PREPROCESSING</text>
+  <text x="452" y="96" class="section">DUAL ENCODERS</text>
+  <text x="676" y="96" class="section">CROSS-MODAL FUSION</text>
+  <text x="932" y="96" class="section">POSE HEADS</text>
+  <text x="1122" y="96" class="section">OUTPUT</text>
+
+  <rect x="38" y="118" width="158" height="74" rx="10" class="box input"/>
+  <text x="117" y="146" text-anchor="middle" class="blockTitle">Rectified RGB</text>
+  <text x="117" y="169" text-anchor="middle" class="tensor">I_RGB ∈ R³×H×W</text>
+
+  <rect x="38" y="260" width="158" height="86" rx="10" class="box input"/>
+  <text x="117" y="288" text-anchor="middle" class="blockTitle">LiDAR Points</text>
+  <text x="117" y="311" text-anchor="middle" class="tensor">P_L = {(x,y,z,i)}</text>
+  <text x="117" y="330" text-anchor="middle" class="blockText">motion compensated</text>
+
+  <rect x="38" y="444" width="158" height="72" rx="10" class="box input"/>
+  <text x="117" y="472" text-anchor="middle" class="blockTitle">Camera ID</text>
+  <text x="117" y="495" text-anchor="middle" class="tensor">c ∈ {1,…,C}</text>
+
+  <rect x="236" y="118" width="168" height="74" rx="10" class="box geom"/>
+  <text x="320" y="145" text-anchor="middle" class="blockTitle">Virtual Camera</text>
+  <text x="320" y="167" text-anchor="middle" class="blockText">rectify · crop · normalize</text>
+
+  <rect x="236" y="248" width="168" height="110" rx="10" class="box geom"/>
+  <text x="320" y="276" text-anchor="middle" class="blockTitle">LiDAR Rasterizer</text>
+  <text x="320" y="298" text-anchor="middle" class="tensor">p_C = T_init p_L</text>
+  <text x="320" y="319" text-anchor="middle" class="tensor">ũ ∼ K p_C</text>
+  <text x="320" y="341" text-anchor="middle" class="blockText">depth + intensity · z-buffer</text>
+
+  <rect x="236" y="444" width="168" height="72" rx="10" class="box geom"/>
+  <text x="320" y="471" text-anchor="middle" class="blockTitle">ID Embedding</text>
+  <text x="320" y="494" text-anchor="middle" class="tensor">z_c ∈ R³²</text>
+
+  <rect x="444" y="118" width="176" height="92" rx="10" class="box encoder"/>
+  <text x="532" y="146" text-anchor="middle" class="blockTitle">RGB Encoder</text>
+  <text x="532" y="169" text-anchor="middle" class="blockText">ResNet-18 · ImageNet init</text>
+  <text x="532" y="190" text-anchor="middle" class="tensor">F_RGB¹⁄⁸ , F_RGB¹⁄³²</text>
+
+  <rect x="444" y="256" width="176" height="92" rx="10" class="box encoder"/>
+  <text x="532" y="284" text-anchor="middle" class="blockTitle">LiDAR Encoder</text>
+  <text x="532" y="307" text-anchor="middle" class="blockText">independent branch · GroupNorm</text>
+  <text x="532" y="328" text-anchor="middle" class="tensor">F_L¹⁄⁸ , F_L¹⁄³²</text>
+
+  <rect x="444" y="432" width="176" height="96" rx="10" class="box encoder"/>
+  <text x="532" y="460" text-anchor="middle" class="blockTitle">Camera FiLM</text>
+  <text x="532" y="483" text-anchor="middle" class="tensor">F′ = F ⊙ (1+γ_c)+β_c</text>
+  <text x="532" y="506" text-anchor="middle" class="blockText">viewpoint-conditioned features</text>
+
+  <rect x="664" y="138" width="216" height="112" rx="10" class="box fusion"/>
+  <text x="772" y="167" text-anchor="middle" class="blockTitle">Bidirectional Cross-Attention</text>
+  <text x="772" y="191" text-anchor="middle" class="tensor">Q_R K_L V_L  ↔  Q_L K_R V_R</text>
+  <text x="772" y="214" text-anchor="middle" class="blockText">1/8-scale local correspondence</text>
+  <text x="772" y="233" text-anchor="middle" class="blockText">position-aware multimodal matching</text>
+
+  <rect x="664" y="292" width="216" height="100" rx="10" class="box fusion"/>
+  <text x="772" y="320" text-anchor="middle" class="blockTitle">Coarse Global Fusion</text>
+  <text x="772" y="344" text-anchor="middle" class="tensor">Concat(F_RGB¹⁄³², F_L¹⁄³²)</text>
+  <text x="772" y="369" text-anchor="middle" class="blockText">global context · fusion convolution</text>
+
+  <rect x="918" y="138" width="160" height="100" rx="10" class="box head"/>
+  <text x="998" y="167" text-anchor="middle" class="blockTitle">Rotation Head</text>
+  <text x="998" y="191" text-anchor="middle" class="blockText">global pooled context</text>
+  <text x="998" y="216" text-anchor="middle" class="tensor">q_pred / ||q_pred||</text>
+
+  <rect x="918" y="292" width="160" height="100" rx="10" class="box head"/>
+  <text x="998" y="321" text-anchor="middle" class="blockTitle">Translation Head</text>
+  <text x="998" y="345" text-anchor="middle" class="blockText">local features + coarse context</text>
+  <text x="998" y="370" text-anchor="middle" class="tensor">t_pred ∈ R³</text>
+
+  <rect x="1110" y="190" width="134" height="92" rx="10" class="box output"/>
+  <text x="1177" y="219" text-anchor="middle" class="blockTitle">Residual</text>
+  <text x="1177" y="244" text-anchor="middle" class="tensor">ΔT_pred ∈ SE(3)</text>
+  <text x="1177" y="264" text-anchor="middle" class="blockText">rotation + translation</text>
+
+  <rect x="1110" y="326" width="134" height="88" rx="10" class="box output"/>
+  <text x="1177" y="355" text-anchor="middle" class="blockTitle">Composition</text>
+  <text x="1177" y="379" text-anchor="middle" class="tensor">T_final = ΔT_pred T_init</text>
+  <text x="1177" y="399" text-anchor="middle" class="blockText">updated sensor geometry</text>
+
+  <path d="M196 155 H236" class="line"/><path d="M404 155 H444" class="line"/>
+  <path d="M196 303 H236" class="line"/><path d="M404 303 H444" class="line"/>
+  <path d="M196 480 H236" class="line"/><path d="M404 480 H444" class="line"/>
+  <path d="M620 160 H644 V174 H664" class="line"/><path d="M620 302 H644 V218 H664" class="line"/>
+  <path d="M620 184 H640 V324 H664" class="line"/><path d="M620 326 H664" class="line"/>
+  <path d="M532 432 V380 H500 V210" class="dash"/><path d="M560 432 V380 H590 V348" class="dash"/>
+  <path d="M880 194 H918" class="line"/><path d="M880 342 H918" class="line"/>
+  <path d="M880 342 H898 V214 H918" class="branch"/><path d="M880 194 H898 V316 H918" class="branch"/>
+  <path d="M1078 188 H1094 V224 H1110" class="branch"/><path d="M1078 342 H1094 V260 H1110" class="line"/>
+  <path d="M1177 282 V326" class="line"/>
+  <path d="M404 330 H424 V370 H1177 V326" class="dash"/>
+  <text x="918" y="426" class="note">rotation: global structure</text>
+  <text x="918" y="445" class="note">translation: local correspondence + context</text>
+
+  <text x="40" y="568" class="section">GEOMETRY-AWARE TRAINING OBJECTIVES</text>
+  <rect x="38" y="584" width="284" height="50" rx="8" class="box loss"/>
+  <text x="180" y="606" text-anchor="middle" class="blockTitle">SO(3) Rotation</text><text x="180" y="625" text-anchor="middle" class="tensor">L_R = 1 − |⟨q_pred,q_gt⟩|²</text>
+  <rect x="344" y="584" width="284" height="50" rx="8" class="box loss"/>
+  <text x="486" y="606" text-anchor="middle" class="blockTitle">Robust Translation</text><text x="486" y="625" text-anchor="middle" class="tensor">L_t = SmoothL1(t_pred,t_gt)</text>
+  <rect x="650" y="584" width="380" height="50" rx="8" class="box loss"/>
+  <text x="840" y="606" text-anchor="middle" class="blockTitle">3D Point Consistency</text><text x="840" y="625" text-anchor="middle" class="tensor">L_3D = ρ(T_final P_L, T_gt P_L)</text>
+  <rect x="1052" y="584" width="192" height="50" rx="8" class="box output"/>
+  <text x="1148" y="607" text-anchor="middle" class="blockTitle">ΔT_pred</text><text x="1148" y="625" text-anchor="middle" class="blockText">deployable correction</text>
+</svg>

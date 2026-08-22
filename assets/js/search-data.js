@@ -9,9 +9,9 @@ ninja.data = [{
     handler: () => {
       window.location.href = "/";
     },
-  },{id: "nav-projects-amp-publications",
-          title: "Projects &amp; Publications",
-          description: "A collection of my research projects, publications, and technical work.",
+  },{id: "nav-selected-work",
+          title: "Selected Work",
+          description: "Production systems, research, and selected technical projects.",
           section: "Navigation",
           handler: () => {
             window.location.href = "/projects/";
@@ -61,7 +61,17 @@ ninja.data = [{
             },},{id: "news-a-simple-inline-announcement-with-markdown-emoji-sparkles-smile",
           title: 'A simple inline announcement with Markdown emoji! :sparkles: :smile:',
           description: "",
-          section: "News",},{id: "projects-robotic-tool-handler",
+          section: "News",},{id: "projects-production-grade-neural-camera-lidar-calibration",
+          title: 'Production-Grade Neural Camera–LiDAR Calibration',
+          description: "End-to-end 6-DoF online calibration—from 500+ GB of multimodal sensor data to TensorRT deployment in an onboard C++ system",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/lccnet-calibration/";
+            },},{id: "projects-lilinet-production-neural-lidar-lidar-calibration",
+          title: 'LiLiNet: Production Neural LiDAR–LiDAR Calibration',
+          description: "Geometry-aware residual calibration—from synchronized point-cloud pairs and distributed training to TensorRT/C++ vehicle deployment",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/lilinet-calibration/";
+            },},{id: "projects-robotic-tool-handler",
           title: 'Robotic Tool Handler',
           description: "Senior Design Project - ARM Cortex-based robotic system with real-time control",
           section: "Projects",handler: () => {

@@ -18,7 +18,7 @@ ninja.data = [{
           },
         },{id: "nav-experience",
           title: "Experience",
-          description: "Industry, research, and teaching experience",
+          description: "Technical ownership, production delivery, research, and teaching",
           section: "Navigation",
           handler: () => {
             window.location.href = "/experience/";
@@ -121,6 +121,13 @@ ninja.data = [{
         section: 'Socials',
         handler: () => {
           window.open("https://www.linkedin.com/in/haixi-zhang-b83104251", "_blank");
+        },
+      },{
+        id: 'social-scholar',
+        title: 'Google Scholar',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://scholar.google.com/citations?user=eW3Th_kAAAAJ", "_blank");
         },
       },{
       id: 'light-theme',

@@ -194,7 +194,7 @@
   <!-- Removed Pseudocode -->
 {% endif %}
 
-{% if site.enable_google_analytics %}
+{% if site.enable_google_analytics and jekyll.environment == 'production' %}
   <!-- Analytics -->
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics }}"></script>

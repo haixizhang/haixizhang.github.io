@@ -97,13 +97,13 @@ horizontal: false
 <article class="industry-feature industry-feature--oms">
   <div class="industry-feature__content">
     <div class="industry-feature__meta">
-      <div class="industry-feature__eyebrow">03 · OMS · OCCUPANT PERCEPTION</div>
+      <div class="industry-feature__eyebrow">03 · IN-CABIN · OCCUPANT PERCEPTION</div>
       <div class="industry-feature__status"><i aria-hidden="true"></i>Active Development</div>
     </div>
-    <h2><a href="{{ '/projects/occupant-state-monitoring/' | relative_url }}">Vision-Based Occupant State Monitoring</a></h2>
-    <p class="industry-feature__lead">A per-seat perception system that jointly estimates occupancy and torso pose from fisheye cabin imagery, with leakage-resistant data construction, deterministic evaluation, and a deployable ONNX interface.</p>
+    <h2><a href="{{ '/projects/occupant-state-monitoring/' | relative_url }}">In-Cabin Occupant State Perception</a></h2>
+    <p class="industry-feature__lead">A dual-head perception system that jointly classifies seat occupancy and occupant posture from fisheye cabin imagery, with leakage-resistant data construction, deterministic evaluation, and a deployable ONNX interface.</p>
     <div class="project-metrics project-metrics--capabilities">
-      <div><b>01 · MODEL</b><strong>Seat-aware multi-task inference</strong><span>shared visual representation for occupancy and torso state</span></div>
+      <div><b>01 · MODEL</b><strong>Seat-aware multi-task inference</strong><span>shared visual representation for occupancy and posture classification</span></div>
       <div><b>02 · DATA</b><strong>Session-isolated data contract</strong><span>burst-aware sampling with recording-level separation</span></div>
       <div><b>03 · VALIDATION</b><strong>Safety-oriented error taxonomy</strong><span>directional errors, per-class recall, and degeneration checks</span></div>
       <div><b>04 · SYSTEM</b><strong>Deterministic deployment interface</strong><span>versioned preprocessing, tensor semantics, and output gating</span></div>
@@ -112,7 +112,7 @@ horizontal: false
       <div class="industry-feature__stack">
         <b>TECHNICAL CAPABILITIES</b>
         <div class="industry-feature__tags">
-          <span>In-Cabin Computer Vision</span><span>Multi-Task Visual Learning</span><span>Occupancy Classification</span><span>Torso-State Estimation</span><span>Fisheye ROI Modeling</span><span>Leakage-Resistant Evaluation</span><span>Class-Imbalance Diagnostics</span><span>Safety-Critical Error Analysis</span><span>Deterministic Model Export</span>
+          <span>In-Cabin Computer Vision</span><span>Multi-Task Visual Learning</span><span>Occupancy Classification</span><span>Occupant Posture Recognition</span><span>Fisheye ROI Modeling</span><span>Leakage-Resistant Evaluation</span><span>Class-Imbalance Diagnostics</span><span>Safety-Critical Error Analysis</span><span>Deterministic Model Export</span>
         </div>
       </div>
       <a class="industry-feature__cta" href="{{ '/projects/occupant-state-monitoring/' | relative_url }}">Explore the case study <span aria-hidden="true">↗</span></a>
@@ -120,7 +120,7 @@ horizontal: false
   </div>
   <div class="industry-feature__visual">
     <div class="industry-feature__media">
-      <img src="{{ '/assets/img/projects/oms_architecture.svg' | relative_url }}" alt="Schematic architecture for per-seat occupant state monitoring from fisheye imagery" loading="lazy" decoding="async" data-zoomable>
+      <img src="{{ '/assets/img/projects/oms_architecture.svg' | relative_url }}" alt="Schematic architecture for per-seat occupancy and occupant-posture classification from fisheye imagery" loading="lazy" decoding="async" data-zoomable>
       <div class="industry-feature__visual-meta"><span>CURRENT VISUAL BASELINE</span><small>Schematic · click to enlarge</small></div>
     </div>
   </div>

@@ -98,7 +98,7 @@ _styles: |
       <em>Production deployed</em>
     </a>
     <a href="{{ '/projects/occupant-state-monitoring/' | relative_url }}">
-      <span><b>OMS</b> · Occupant-State Perception</span>
+      <span><b>In-Cabin Perception</b> · Occupancy &amp; Posture Classification</span>
       <em>Active development</em>
     </a>
   </div>

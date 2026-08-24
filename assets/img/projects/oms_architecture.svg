@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1600" height="720" viewBox="0 0 1600 720" role="img" aria-labelledby="title desc">
-  <title id="title">Vision-based occupant state monitoring architecture</title>
-  <desc id="desc">Fisheye RGB frames are divided into versioned seat regions, encoded with a shared ResNet18, and passed to occupancy and torso-pose heads followed by deterministic output gating.</desc>
+  <title id="title">In-cabin occupant state perception architecture</title>
+  <desc id="desc">Fisheye RGB frames are divided into versioned seat regions, encoded with a shared ResNet18, and passed to occupancy and posture-classification heads followed by deterministic output gating.</desc>
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#f8f9fd"/>
@@ -73,7 +73,7 @@
     <path d="M1172 465 q14-35 28 0" fill="none" stroke="#8769c9" stroke-width="5" stroke-linecap="round"/>
     <circle cx="1186" cy="424" r="18" fill="#ece6f8" stroke="#8769c9" stroke-width="3"/>
     <text x="1225" y="422" class="tiny">HEAD 02</text>
-    <text x="1225" y="459" class="title">Torso pose</text>
+    <text x="1225" y="459" class="title" style="font-size:24px">Posture classification</text>
     <text x="1225" y="489" class="small">forward · upright · reclined</text>
   </g>
   <path d="M1334 548 V598" class="line"/>

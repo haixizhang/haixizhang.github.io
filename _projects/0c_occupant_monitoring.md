@@ -1,7 +1,7 @@
 ---
 layout: page
-title: Vision-Based Occupant State Monitoring
-description: Active development — per-seat occupancy and torso-pose perception from fisheye cabin imagery, with leakage-resistant data splits and a deployable ONNX contract
+title: In-Cabin Occupant State Perception
+description: Active development — dual-head seat-occupancy and occupant-posture classification from fisheye cabin imagery, with leakage-resistant data splits and a deployable ONNX contract
 img: /assets/img/projects/oms_architecture.svg
 importance: 0
 category: industry
@@ -11,13 +11,13 @@ permalink: /projects/occupant-state-monitoring/
 
 <div class="project-kicker">ACTIVE DEVELOPMENT · COMPUTER VISION · SAFETY-CRITICAL PERCEPTION</div>
 
-I am developing an end-to-end visual perception system for **per-seat occupant state understanding** from fisheye cabin cameras. The current baseline jointly estimates seat occupancy and coarse torso pose, while the surrounding engineering work turns raw recording sessions into reproducible supervision, separates evaluation sessions from training data, and maintains a stable interface for downstream integration.
+I am developing an end-to-end visual perception system for **per-seat occupant state understanding** from fisheye cabin cameras. The current dual-head baseline jointly classifies seat occupancy and occupant posture—including forward-leaning, upright, and reclined states—while the surrounding engineering work turns raw recording sessions into reproducible supervision, separates evaluation sessions from training data, and maintains a stable interface for downstream integration.
 
 Because the project is still active, this page emphasizes the **technical contract and engineering decisions** rather than publishing provisional headline accuracy.
 
 <div class="project-metrics project-metrics-detail">
   <div><strong>Active</strong><span>development status</span></div>
-  <div><strong>2 heads</strong><span>occupancy + torso pose</span></div>
+  <div><strong>2 heads</strong><span>occupancy + posture</span></div>
   <div><strong>Session-level</strong><span>held-out evaluation</span></div>
   <div><strong>ONNX</strong><span>integration interface</span></div>
 </div>
@@ -58,7 +58,7 @@ The project therefore treats **data construction, model behavior, evaluation, an
 
 <div id="data" class="project-stage-heading case-study-anchor"><span>01</span><div><small>DATA CONTRACT</small><h3>Turn correlated recordings into trustworthy supervision</h3></div></div>
 
-- Defined a seat-centric label schema that keeps occupancy and torso state explicit instead of hiding application semantics inside folder names or preprocessing code.
+- Defined a seat-centric label schema that keeps occupancy and occupant posture explicit instead of hiding application semantics inside folder names or preprocessing code.
 - Built deterministic sample manifests from recording sessions, with fixed seat regions and reproducible mapping from frame metadata to model inputs.
 - Used **session-isolated splits** so visually adjacent frames from the same recording burst cannot inflate held-out performance.
 - Designed burst-aware sampling and dataset audits to expose duplicate frames, sparse labels, class skew, missing files, and inconsistent annotations before training.
@@ -66,11 +66,11 @@ The project therefore treats **data construction, model behavior, evaluation, an
 
 <div id="architecture" class="project-stage-heading case-study-anchor"><span>02</span><div><small>MODEL ARCHITECTURE</small><h3>Share perception while preserving seat-level outputs</h3></div></div>
 
-The current visual baseline crops each configured seat region from a fisheye frame and passes every crop through a shared **ResNet-18** encoder. Two task heads operate on the same representation: a binary occupancy head and a three-class torso-pose head. Deterministic output gating prevents an unoccupied seat from producing a semantically misleading pose state.
+The current visual baseline crops each configured seat region from a fisheye frame and passes every crop through a shared **ResNet-18** encoder. Two task heads operate on the same representation: a binary occupancy head and a three-class posture-classification head for forward-leaning, upright, and reclined states. Deterministic output gating prevents an unoccupied seat from producing a semantically misleading posture prediction.
 
 <figure class="paper-architecture">
   <div class="paper-architecture__canvas">
-    <img src="{{ '/assets/img/projects/oms_architecture.svg' | relative_url }}" alt="Occupant monitoring architecture: fisheye cabin frames are converted into versioned per-seat regions, encoded with a shared ResNet18, and passed to occupancy and torso-pose heads before deterministic output gating">
+    <img src="{{ '/assets/img/projects/oms_architecture.svg' | relative_url }}" alt="Occupant perception architecture: fisheye cabin frames are converted into versioned per-seat regions, encoded with a shared ResNet18, and passed to occupancy and posture-classification heads before deterministic output gating">
   </div>
   <figcaption><strong>Figure 1.</strong> Current RGB baseline. A shared encoder learns reusable occupant appearance features across seat crops, while task-specific heads preserve distinct occupancy and posture objectives. The illustration is schematic and contains no proprietary imagery or cabin geometry.</figcaption>
 </figure>
@@ -83,14 +83,14 @@ For seat region \(s\), the model can be summarized as
   \[
     h_s=f_\theta\!\left(\operatorname{Crop}(I,\mathcal{R}_s)\right),\qquad
     p_s^{\mathrm{occ}}=\sigma(w_o^{\mathsf T}h_s),\qquad
-    p_s^{\mathrm{pose}}=\operatorname{softmax}(W_p h_s)
+    p_s^{\mathrm{posture}}=\operatorname{softmax}(W_p h_s)
   \]
   \[
     \mathcal{L}=\lambda_o\,\mathcal{L}_{\mathrm{occ}}+
-    \lambda_p\,\mathbb{1}[y_s^{\mathrm{occ}}=1],\mathcal{L}_{\mathrm{pose}}
+    \lambda_p\,\mathbb{1}[y_s^{\mathrm{occ}}=1]\,\mathcal{L}_{\mathrm{posture}}
   \]
   </div>
-  <p class="geometry-derivation__note">The pose objective is meaningful only for occupied seats. Making this dependency explicit keeps the training target and downstream output semantics aligned.</p>
+  <p class="geometry-derivation__note">The posture objective is meaningful only for occupied seats. Making this dependency explicit keeps the training target and downstream output semantics aligned.</p>
 </div>
 
 <div id="training" class="project-stage-heading case-study-anchor"><span>03</span><div><small>TRAINING SYSTEM</small><h3>Make experiments repeatable, not anecdotal</h3></div></div>
@@ -115,7 +115,7 @@ Session-held-out evaluation, multi-seed variation, degeneration checks, and labe
 
 <div id="interface" class="project-stage-heading case-study-anchor"><span>05</span><div><small>MODEL INTERFACE</small><h3>Design for integration from the beginning</h3></div></div>
 
-The baseline is exportable through **PyTorch → ONNX** with a documented tensor contract for preprocessing, seat ordering, occupancy probability, pose scores, and deterministic gating. This boundary is intentionally narrow: the learned model estimates visual state, while seat configuration, policy thresholds, and application-specific decisions remain explicit in the consuming system.
+The baseline is exportable through **PyTorch → ONNX** with a documented tensor contract for preprocessing, seat ordering, occupancy probability, posture probabilities, and deterministic gating. This boundary is intentionally narrow: the learned model estimates visual state, while seat configuration, policy thresholds, and application-specific decisions remain explicit in the consuming system.
 
 Current integration work focuses on numerical parity, stable input shapes, reproducible preprocessing, and clear failure behavior when inputs or configuration violate the expected contract.
 

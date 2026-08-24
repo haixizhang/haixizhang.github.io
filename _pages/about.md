@@ -27,7 +27,7 @@ I specialize in production perception systems that combine **multimodal sensor d
   <span class="home-feature__systems">
     <em><b>LCCNet</b> · Deployed</em>
     <em><b>LiLiNet</b> · Deployed</em>
-    <em><b>OMS</b> · Active Development</em>
+    <em><b>In-Cabin Perception</b> · Active Development</em>
   </span>
   <b>Explore selected work →</b>
 </a>

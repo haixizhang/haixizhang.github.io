@@ -71,9 +71,9 @@ ninja.data = [{
           description: "Geometry-aware residual calibration—from synchronized point-cloud pairs and distributed training to TensorRT/C++ vehicle deployment",
           section: "Projects",handler: () => {
               window.location.href = "/projects/lilinet-calibration/";
-            },},{id: "projects-vision-based-occupant-state-monitoring",
-          title: 'Vision-Based Occupant State Monitoring',
-          description: "Active development — per-seat occupancy and torso-pose perception from fisheye cabin imagery, with leakage-resistant data splits and a deployable ONNX contract",
+            },},{id: "projects-in-cabin-occupant-state-perception",
+          title: 'In-Cabin Occupant State Perception',
+          description: "Active development — dual-head seat-occupancy and occupant-posture classification from fisheye cabin imagery, with leakage-resistant data splits and a deployable ONNX contract",
           section: "Projects",handler: () => {
               window.location.href = "/projects/occupant-state-monitoring/";
             },},{id: "projects-robotic-tool-handler",

@@ -37,7 +37,7 @@ _styles: |
     <time>Sep 2025 — Present</time>
   </header>
 
-  <p class="experience-scope"><strong>Role scope.</strong> Technical owner of three company-level ML/CV systems spanning multimodal calibration and in-cabin perception, with responsibility from requirement definition and data infrastructure through modeling, onboard deployment, production validation, and ongoing monitoring.</p>
+  <p class="experience-scope"><strong>Role scope.</strong> Sole technical owner of three company-level ML/CV systems spanning multimodal calibration and in-cabin perception. I take each system from initial requirements and data contracts through independent design and implementation, partnering with infrastructure and testing teams at system boundaries; two have reached onboard production deployment, while the third remains in active validation and integration.</p>
 
   <div class="experience-ownership" aria-label="Industry responsibilities and impact">
     <article>
@@ -50,8 +50,8 @@ _styles: |
     <article>
       <span>02</span>
       <div>
-        <h3>Independent Technical Execution</h3>
-        <p>Independently designed and implemented the core data, geometry, model, training, evaluation, and runtime components for three perception systems, two of which have been deployed in production.</p>
+        <h3>End-to-End Technical Ownership</h3>
+        <p>After aligning on high-level product direction, independently translated it into concrete requirements and implemented the core data, geometry, model, training, evaluation, and runtime components for all three systems.</p>
       </div>
     </article>
     <article>

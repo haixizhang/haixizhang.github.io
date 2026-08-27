@@ -1,0 +1,186 @@
+\documentclass[letterpaper,10pt]{article}
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{xcolor}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\usepackage{iftex}
+\ifPDFTeX
+  \input{glyphtounicode}
+\fi
+
+% Original resume typography
+\usepackage[T1]{fontenc}
+\usepackage{charter}
+
+\definecolor{cvblue}{HTML}{0E5484}
+\definecolor{black}{HTML}{130810}
+\definecolor{darkcolor}{HTML}{0F4539}
+\definecolor{cvgreen}{HTML}{3BD80D}
+\definecolor{taggreen}{HTML}{00E278}
+\definecolor{SlateGrey}{HTML}{2E2E2E}
+\definecolor{LightGrey}{HTML}{666666}
+\colorlet{name}{black}
+\colorlet{tagline}{darkcolor}
+\colorlet{heading}{darkcolor}
+\colorlet{headingrule}{cvblue}
+\colorlet{accent}{darkcolor}
+\colorlet{emphasis}{SlateGrey}
+\colorlet{body}{LightGrey}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.6in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1.19in}
+\addtolength{\topmargin}{-.7in}
+\addtolength{\textheight}{1.4in}
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+\ifPDFTeX
+  \pdfgentounicode=1
+\fi
+\ifXeTeX
+  \XeTeXgenerateactualtext=1
+\fi
+
+% Section formatting
+\titleformat{\section}{
+  \vspace{-2pt}\scshape\raggedright\large\bfseries
+}{}{0em}{}[\color{black}\titlerule \vspace{-2pt}]
+
+% Custom commands
+\newcommand{\resumeItem}[1]{\item\small{#1 \vspace{-2pt}}}
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{1.0\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{\large #1} & {\small #2} \\
+      \textit{\small #3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-2pt}
+}
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{0pt}}
+\newcommand{\resumeItemListStart}{\begin{itemize}[leftmargin=0.15in, label={\color{cvblue}-}]}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{0pt}}
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.0in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%----------HEADING----------
+\begin{center}
+    {\huge \textbf{Haixi Zhang}} \\
+    \vspace{3pt}
+    \href{https://www.linkedin.com/in/haixi-zhang-b83104251/}{\color{blue}{LinkedIn}}
+    \small{-}
+    \href{mailto:haixizhang02@gmail.com}{\color{blue}{haixizhang02@gmail.com}}
+    \small{-} {\color{blue}{(607)\,339-9816}}
+    \small{-} {\color{blue}{San Jose, CA 95113}}
+    \small{-}
+    \href{https://haixizhang.github.io/}{\color{blue}{Portfolio}}
+    \small{-}
+    \href{https://github.com/haixizhang}{\color{blue}{GitHub}}
+\end{center}
+
+%-----------PROFILE-----------
+% \section{\color{cvblue}PROFILE}
+% \small{
+% Perception/Robotics engineer focused on \textbf{C++/Python}, building \textbf{camera–LiDAR} perception and calibration pipelines on \textbf{Linux/ROS}. Hands-on experience in \textbf{2D/3D detection, tracking, depth/point-cloud processing}, and \textbf{sensor fusion}, with deployment via Docker and system-level testing. Comfortable with real-time constraints and cross-team integration.
+% }
+% \section{\color{cvblue}PROFILE}
+% \small{
+% Sensor/ML engineer focused on \textbf{estimation and sensor-fusion algorithms} for robotics and embedded platforms.
+% Strong in \textbf{linear algebra, probability/statistics}, and \textbf{camera/LiDAR geometry and calibration}.
+% Hands-on experience building end-to-end pipelines from \textbf{data collection \& algorithm validation} (Python/PyTorch/OpenCV) to \textbf{C/C++ integration} on Linux/ROS, with attention to \textbf{latency and compute/memory tradeoffs}.
+% }
+
+%-----------EDUCATION-----------
+\section{\color{cvblue}EDUCATION}
+\resumeSubHeadingListStart
+  \resumeSubheading
+    {Cornell University}{Ithaca, NY}
+    {M.Eng in Electrical \& Computer Engineering (GPA: 3.81/4.0)}{Aug. 2024 -- May. 2025}
+  \resumeSubheading
+    {University of Rochester}{Rochester, NY}
+    {B.S. in Electrical \& Computer Engineering; Minor in Statistics (GPA: 3.86/4.0)}{Sep. 2020 -- May. 2024}
+\resumeSubHeadingListEnd
+
+%-----------TECHNICAL SKILLS-----------
+% \section{\color{cvblue}TECHNICAL SKILLS}
+% \small{
+% \textbf{Languages:} C, Python, Java, C++, Bash, MATLAB, R \\
+% \textbf{Embedded \& OS:} Embedded Linux, ROS, RTOS, ARM Cortex Microcontrollers, Sensors (ToF, IMU, LiDAR), Mixed-Signal Circuits, TCP/IP protocols,
+% Serial Protocols, BLE, Hardware Integration, SIL/HIL Testing, Schematics/PCB Reading, Windows  \\
+% \textbf{Tools:} CI/CD (GitLab), Git, Docker, Kubernetes, Logic Analyzers, Oscilloscope, Digital Multimeters \\
+% \textbf{Data \& ML:} PyTorch, HPC, Computer Vision, NLP, Nonlinear Optimization, Statistical Analysis, Multiprocessing \\
+% }
+
+\section{\color{cvblue}TECHNICAL SKILLS}
+\small{
+\textbf{Languages \& Systems:} C++, Python, CUDA, Bash, Linux, ROS/ROS2, Git, Bazel, CMake, Docker, Kubernetes \\
+\textbf{Computer Vision \& Robotics:} Camera models, multi-sensor extrinsic calibration, $SE(3)/SO(3)$, LiDAR--camera fusion, point-cloud processing, OpenCV, Eigen, PCL/Open3D, state estimation (EKF), SLAM, occupancy-grid mapping, A* planning \\
+\textbf{Machine Learning \& AI:} PyTorch, CNNs, Vision Transformers, multimodal learning, cross-attention, multi-task learning, representation learning, PyTorch DistributedDataParallel (DDP), NCCL, distributed data loading/evaluation, LLM APIs, AI agents \\
+\textbf{Production ML \& Data:} ONNX, TensorRT, C++ inference, model export and optimization, numerical-parity testing, Airflow, ETL pipelines, dataset curation, data-quality validation, production monitoring
+}
+
+%-----------PROFESSIONAL EXPERIENCE-----------
+\section{\color{cvblue}PROFESSIONAL EXPERIENCE}
+\resumeSubHeadingListStart
+\resumeSubheading
+  {Machine Learning Engineer, Tensor Auto}{San Jose, CA}
+    {Production Computer Vision, 3D Geometry, Multimodal Learning, Onboard Inference}{Sep. 2025 -- Present}
+    \resumeItemListStart
+      \resumeItem{Own three company-level ML/CV systems as sole technical owner, taking two from initial requirements to onboard production deployment and leading the third from requirements through active validation and integration.}
+      \resumeItem{Designed a residual extrinsic-calibration framework spanning camera--LiDAR 6-DoF alignment and LiDAR--LiDAR rotational alignment, combining differentiable projection and depth rasterization, $SE(3)/SO(3)$ correction modeling, multimodal feature fusion, and geometry-aware objectives.}
+      \resumeItem{Co-developed Airflow/Kubernetes data pipelines and curated 50K+ training pairs from 500+ GB of multimodal sensor logs; both calibration systems recovered controlled rotational perturbations up to $10^\circ$ to approximately $0.5^\circ$ residual, while LiDAR--LiDAR evaluation improved rotation by 62.5\% across 95.9\% of held-out frames.}
+      \resumeItem{Re-engineered CPU-heavy camera--LiDAR training via geometry precomputation and TAR-sharded streaming, reducing single-accelerator runs from $\sim$60 to $\sim$20 hours; built world-size-configurable PyTorch DistributedDataParallel/NCCL with deterministic sharding and globally correct evaluation to reach $<$5 hours ($\sim$13$\times$ overall), while profiling LiDAR--LiDAR scale-out limits to CPU-side projection and point correspondence.}
+      \resumeItem{Lead development of an in-cabin seat-occupancy and occupant-posture classification system from fisheye imagery, establishing session-isolated evaluation, multi-seed benchmarking, class-imbalance diagnostics, deterministic output gating, and an ONNX-compatible production contract.}
+    \resumeItemListEnd
+
+  \resumeSubheading
+    {Undergraduate Research Assistant}{University of Rochester, ECE Department}
+    {Python, PyTorch, C, Graph Learning, HPC, Docker/Kubernetes}{Jan. 2023 -- May 2024}
+    \resumeItemListStart
+    \resumeItem{Built reproducible HPC pipelines for graph learning and nature-inspired models in financial and power-system applications, improving benchmark performance by up to 25\% and containerizing distributed experiments with Docker/Kubernetes.}
+    \resumeItemListEnd
+\resumeSubHeadingListEnd
+%-----------PROJECTS \& EXPERIENCE-----------
+\section{\color{cvblue}SELECTED RESEARCH \& PROJECTS}
+\resumeSubHeadingListStart
+  \resumeSubheading
+    {Robotic Tool Handler (Senior Design)}{University of Rochester, Lead Developer}
+    {C++, ROS, NVIDIA Jetson, Real-time Perception \href{https://github.com/haixizhang/Robotic-Tool-Handler}{\color{blue}\underline{GitHub}}}{Jan. 2024 -- Jun. 2024}
+    \resumeItemListStart
+      \resumeItem{Led perception and system integration for a seven-member robotics team; deployed a containerized ROS vision pipeline on NVIDIA Jetson, improved throughput by 20\%, and built GitLab CI with software- and hardware-in-the-loop validation.}
+      \resumeItem{Developed real-time 3D object detection and classification by fusing camera and LiDAR evidence, achieving sub-20 ms inference latency and improving mean average precision by 25\%.}
+    \resumeItemListEnd
+
+  \resumeSubheading
+    {Robot Mapping, Estimation, and Navigation}{University of Rochester, Solo Developer}
+    {ROS, C++, LiDAR, Kalman Filter, TurtleBot2 \href{https://github.com/haixizhang/Robot-Mapping-Estimation-Interaction}{\color{blue}\underline{GitHub}}}{Jan. 2024 -- May. 2024}
+    \resumeItemListStart
+      \resumeItem{Implemented and deployed a C++/ROS navigation stack on TurtleBot2, integrating RGB-D, LiDAR, and wheel odometry for EKF-based state estimation, occupancy-grid mapping, A* planning, and sensor fault detection.}
+      \resumeItem{Reduced localization error by 10\% and planning time by 15\% through EKF tuning, occupancy-map parameterization, and unit-tested sensor integration and failure handling.}
+    \resumeItemListEnd
+
+  \resumeSubheading
+    {Monocular Real-time Perception for Autonomous Driving}{University of Rochester}
+    {Python, PyTorch, Computer Vision, Depth Estimation \href{https://github.com/EnisZuo/LRHPerception}{\color{blue}\underline{GitHub}}}{Apr. 2023 -- Aug. 2023}
+    \resumeItemListStart
+      \resumeItem{Designed a 30+ FPS multi-task perception pipeline combining object tracking, trajectory prediction, road segmentation, and monocular depth estimation through shared visual features and lightweight task decoders.}
+    \resumeItemListEnd
+\resumeSubHeadingListEnd
+
+
+
+\end{document}

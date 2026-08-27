@@ -11,7 +11,7 @@ permalink: /projects/occupant-state-monitoring/
 
 <div class="project-kicker">ACTIVE DEVELOPMENT · COMPUTER VISION · SAFETY-CRITICAL PERCEPTION</div>
 
-I am developing an end-to-end visual perception system for **per-seat occupant state understanding** from fisheye cabin cameras. The current dual-head baseline jointly classifies seat occupancy and occupant posture—including forward-leaning, upright, and reclined states—while the surrounding engineering work turns raw recording sessions into reproducible supervision, separates evaluation sessions from training data, and maintains a stable interface for downstream integration.
+As sole technical owner, I am taking an end-to-end visual perception system for **per-seat occupant state understanding** from initial requirements through active model development, validation, and production-interface integration. The current dual-head baseline jointly classifies seat occupancy and occupant posture—including forward-leaning, upright, and reclined states—while the surrounding engineering work turns raw recording sessions into reproducible supervision, separates evaluation sessions from training data, and maintains a stable interface for downstream integration.
 
 Because the project is still active, this page emphasizes the **technical contract and engineering decisions** rather than publishing provisional headline accuracy.
 

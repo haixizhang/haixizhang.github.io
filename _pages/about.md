@@ -12,14 +12,14 @@ social: true
 ---
 Hi, I’m **Haixi Zhang**, an **ML / Computer Vision / Robotics Engineer** based in **San Jose, CA**. I hold an **M.Eng. in Electrical & Computer Engineering** from Cornell University and a **B.S. in Electrical & Computer Engineering** from the University of Rochester.
 
-I specialize in production perception systems that combine **multimodal sensor data, 3D geometry, deep learning, and accelerated onboard inference**. At Tensor Auto, I have independently developed three company-level ML/CV systems, including two neural calibration systems deployed in production and an active occupant-state perception system.
+I specialize in production perception systems that combine **multimodal sensor data, 3D geometry, deep learning, and accelerated onboard inference**. At Tensor Auto, I serve as the **sole technical owner of three company-level ML/CV systems**: I translate high-level product direction into concrete requirements and independently carry the core technical work from data and model development through validation and integration. Two systems have been delivered to onboard production; the third remains under active development.
 
 <a class="home-feature home-feature--suite" href="{{ '/projects/' | relative_url }}">
   <span class="home-feature__label">FEATURED INDUSTRY WORK</span>
   <strong>Production Perception Systems—Built from Data to Deployment</strong>
-  <span>End-to-end ownership across sensor data engineering, geometric formulation, scalable distributed training, evaluation, TensorRT optimization, and onboard C++ integration.</span>
+  <span>Ownership from initial requirements and data contracts through system design, scalable distributed training, production validation, TensorRT optimization, and onboard C++ deployment.</span>
   <span class="home-feature__results">
-    <em><b>3</b> independently owned systems</em>
+    <em><b>3</b> systems owned end to end</em>
     <em><b>2</b> production deployments</em>
     <em><b>500+ GB</b> multimodal sensor data</em>
     <em><b>10° → &lt;1°</b> calibration recovery</em>

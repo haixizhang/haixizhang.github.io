@@ -11,7 +11,7 @@ horizontal: false
 
 <div class="projects">
 
-<p class="work-intro">I independently build production ML and robotics systems from raw sensor data to deployed onboard software. The work below emphasizes measurable recovery, cross-domain robustness, and complete engineering ownership.</p>
+<p class="work-intro">As sole technical owner, I take production ML and robotics systems from initial requirements and data contracts through independent design, implementation, and validation—and, for deployed systems, onboard integration. The work below emphasizes measurable recovery, cross-domain robustness, and complete engineering ownership.</p>
 
 <h2 class="category work-category">Industry Systems</h2>
 

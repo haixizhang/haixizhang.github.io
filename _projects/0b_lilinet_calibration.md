@@ -10,7 +10,7 @@ permalink: /projects/lilinet-calibration/
 
 <div class="project-kicker">PRODUCTION ML · 3D GEOMETRY · END-TO-END OWNERSHIP</div>
 
-I independently architected, trained, diagnosed, and shipped **LiLiNet**, a production residual-calibration system that recovers the rigid-body alignment between heterogeneous LiDARs from imperfect initial extrinsics. The project spans multi-session data collection, geometric label auditing, spherical representation and network design, distributed training, controlled evaluation, ONNX/TensorRT optimization, and integration into an onboard C++ runtime.
+As sole technical owner, I took **LiLiNet** from initial requirements to production deployment. I independently architected, trained, diagnosed, and shipped the residual-calibration system, which recovers rigid-body alignment between heterogeneous LiDARs from imperfect initial extrinsics and spans multi-session data collection, geometric label auditing, spherical representation and network design, distributed training, controlled evaluation, ONNX/TensorRT optimization, and onboard C++ integration.
 
 <div class="project-metrics project-metrics-detail">
   <div><strong>5K+</strong><span>curated paired observations</span></div>

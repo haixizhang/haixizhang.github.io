@@ -10,7 +10,7 @@ permalink: /projects/lccnet-calibration/
 
 <div class="project-kicker">PRODUCTION ML · AUTONOMOUS SYSTEMS · END-TO-END OWNERSHIP</div>
 
-I owned the end-to-end development and production deployment of a learning-based system for **online 6-DoF camera–LiDAR extrinsic calibration**. The project spans the complete ML lifecycle: fleet-scale sensor data processing, geometric validation, multimodal model development, controlled evaluation, ONNX/TensorRT optimization, and integration into an onboard C++ runtime.
+As sole technical owner, I took a learning-based system for **online 6-DoF camera–LiDAR extrinsic calibration** from initial requirements to production deployment. I independently designed and implemented its core data, geometry, model, training, evaluation, and runtime components, spanning fleet-scale sensor processing, geometric validation, multimodal learning, ONNX/TensorRT optimization, and onboard C++ integration.
 
 <div class="project-metrics project-metrics-detail">
   <div><strong>500+ GB</strong><span>multimodal sensor data</span></div>

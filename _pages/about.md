@@ -17,7 +17,7 @@ I specialize in production perception systems that combine **multimodal sensor d
 <a class="home-feature home-feature--suite" href="{{ '/projects/' | relative_url }}">
   <span class="home-feature__label">FEATURED INDUSTRY WORK</span>
   <strong>Production Perception Systems—Built from Data to Deployment</strong>
-  <span>End-to-end ownership across sensor data engineering, geometric formulation, distributed training, evaluation, TensorRT optimization, and onboard C++ integration.</span>
+  <span>End-to-end ownership across sensor data engineering, geometric formulation, scalable distributed training, evaluation, TensorRT optimization, and onboard C++ integration.</span>
   <span class="home-feature__results">
     <em><b>3</b> independently owned systems</em>
     <em><b>2</b> production deployments</em>
@@ -46,7 +46,7 @@ I specialize in production perception systems that combine **multimodal sensor d
     <span>02</span>
     <div>
       <h4>Production ML Engineering</h4>
-      <p>Taking models from <strong>PyTorch and distributed training</strong> through <strong>ONNX / TensorRT</strong> optimization, performance profiling, and integration into production <strong>C++</strong> systems.</p>
+      <p>Engineering <strong>world-size-configurable PyTorch DDP / NCCL training runtimes</strong>, then carrying models through <strong>ONNX / TensorRT</strong> optimization, performance profiling, and production <strong>C++</strong> integration.</p>
     </div>
   </section>
   <section class="home-focus-row">

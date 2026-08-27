@@ -19,14 +19,14 @@ horizontal: false
   <header class="calibration-suite__header">
     <div class="calibration-suite__eyebrow">PRODUCTION CALIBRATION PORTFOLIO</div>
     <h2>Neural Sensor Calibration Systems</h2>
-    <p>Two independently developed and deployed systems covering camera–LiDAR and LiDAR–LiDAR extrinsic calibration—recovering large rotational disturbances to sub-degree residuals and carrying the same geometry from training into production C++.</p>
+    <p>Two independently developed and deployed systems covering camera–LiDAR and LiDAR–LiDAR extrinsic calibration—recovering large rotational disturbances to sub-degree residuals, scaling training through a reusable distributed runtime, and carrying the same geometry into production C++.</p>
   </header>
 
   <div class="suite-results" aria-label="Calibration portfolio results">
     <div><strong>2</strong><span>production systems deployed</span></div>
     <div><strong>500+ GB</strong><span>multimodal sensor data</span></div>
     <div><strong>10° → &lt;1°</strong><span>controlled recovery</span></div>
-    <div><strong>End to end</strong><span>data · model · TRT · C++</span></div>
+    <div><strong>Scale-out</strong><span>reusable distributed training runtime</span></div>
   </div>
 
 <article class="industry-feature industry-feature--lccnet">
@@ -36,7 +36,7 @@ horizontal: false
       <div class="industry-feature__status"><i aria-hidden="true"></i>Production · Deployed</div>
     </div>
     <h2><a href="{{ '/projects/lccnet-calibration/' | relative_url }}">Neural Camera–LiDAR Calibration</a></h2>
-    <p class="industry-feature__lead">A production 6-DoF calibration system that learns corrective geometry from RGB and LiDAR evidence, recovers perturbations as large as 10° to sub-degree residuals, and closes the loop inside an onboard C++ runtime.</p>
+    <p class="industry-feature__lead">A production 6-DoF calibration system that learns corrective geometry from RGB and LiDAR evidence, scales through a world-size-aware training runtime, recovers perturbations as large as 10° to sub-degree residuals, and closes the loop onboard.</p>
     <div class="project-metrics">
       <div><strong>500+ GB</strong><span>sensor data</span></div>
       <div><strong>50K+</strong><span>curated pairs</span></div>
@@ -47,7 +47,7 @@ horizontal: false
       <div class="industry-feature__stack">
         <b>TECHNICAL CAPABILITIES</b>
         <div class="industry-feature__tags">
-          <span>Multimodal Deep Learning</span><span>Camera–LiDAR Extrinsic Calibration</span><span>Cross-Modal Attention</span><span>SE(3) Optimization</span><span>3D Projection Geometry</span><span>Domain Generalization</span><span>Fleet-Scale Data Engineering</span><span>Onboard Inference</span>
+          <span>Multimodal Deep Learning</span><span>Camera–LiDAR Extrinsic Calibration</span><span>Cross-Modal Attention</span><span>SE(3) Optimization</span><span>Distributed Training Systems</span><span>PyTorch DDP / NCCL</span><span>3D Projection Geometry</span><span>Domain Generalization</span><span>Fleet-Scale Data Engineering</span><span>Onboard Inference</span>
         </div>
       </div>
       <a class="industry-feature__cta" href="{{ '/projects/lccnet-calibration/' | relative_url }}">Explore the case study <span aria-hidden="true">↗</span></a>
@@ -68,7 +68,7 @@ horizontal: false
       <div class="industry-feature__status"><i aria-hidden="true"></i>Production · Deployed</div>
     </div>
     <h2><a href="{{ '/projects/lilinet-calibration/' | relative_url }}">Neural LiDAR–LiDAR Calibration</a></h2>
-    <p class="industry-feature__lead">A geometry-aware system that recovers cross-LiDAR alignment from large rotational disturbances, combines full-azimuth correlation with distributed training, and ships through a production TensorRT/C++ pipeline.</p>
+    <p class="industry-feature__lead">A geometry-aware system that combines full-azimuth correlation with a production-hardened distributed training runtime, recovers cross-LiDAR alignment from large rotational disturbances, and ships through TensorRT/C++.</p>
     <div class="project-metrics">
       <div><strong>5K+</strong><span>curated pairs</span></div>
       <div><strong>+62.5%</strong><span>improvement</span></div>
@@ -79,7 +79,7 @@ horizontal: false
       <div class="industry-feature__stack">
         <b>TECHNICAL CAPABILITIES</b>
         <div class="industry-feature__tags">
-          <span>3D Deep Learning</span><span>Cross-LiDAR Extrinsic Calibration</span><span>Point-Cloud Registration</span><span>Spherical Range Imaging</span><span>Circular Correlation</span><span>SO(3) / SE(3) Optimization</span><span>Distributed Training</span><span>Robust Pose Aggregation</span>
+          <span>3D Deep Learning</span><span>Cross-LiDAR Extrinsic Calibration</span><span>Point-Cloud Registration</span><span>Spherical Range Imaging</span><span>Circular Correlation</span><span>SO(3) / SE(3) Optimization</span><span>Distributed Training Systems</span><span>PyTorch DDP / NCCL</span><span>Distributed Evaluation</span><span>Robust Pose Aggregation</span>
         </div>
       </div>
       <a class="industry-feature__cta" href="{{ '/projects/lilinet-calibration/' | relative_url }}">Explore the case study <span aria-hidden="true">↗</span></a>

@@ -31,6 +31,7 @@ I owned the end-to-end development and production deployment of a learning-based
   <a href="#data">Data</a>
   <a href="#formulation">Formulation</a>
   <a href="#architecture">Architecture</a>
+  <a href="#training">Training</a>
   <a href="#evaluation">Evaluation</a>
   <a href="#deployment">Deployment</a>
   <a href="#insights">Insights</a>
@@ -117,7 +118,28 @@ The network consumes camera RGB, a rasterized LiDAR inverse-depth/intensity repr
   <figcaption><strong>Figure 2.</strong> A fully synthetic qualitative visualization of the recovery contract. The middle row applies a coherent rigid perturbation to the LiDAR projection; the predicted result restores the structured scan pattern toward the reference alignment. No proprietary data, vehicle imagery, or hardware is shown.</figcaption>
 </figure>
 
-<div id="evaluation" class="project-stage-heading case-study-anchor"><span>04</span><div><small>EVALUATION</small><h3>Separate capture range from operating accuracy</h3></div></div>
+<div id="training" class="project-stage-heading case-study-anchor"><span>04</span><div><small>DISTRIBUTED TRAINING RUNTIME</small><h3>Scale the experiment—not the operational risk</h3></div></div>
+
+I treated training throughput as an end-to-end systems problem, not a model-only optimization. The original pipeline spent most of its roughly **60-hour** run time repeatedly executing CPU-heavy point-cloud geometry, projection, and perturbation work. I moved reusable computation out of the hot path and repackaged the dataset into sequential **TAR shards** for streaming access, reducing a representative single-accelerator run to approximately **20 hours**. I then built a world-size-configurable **PyTorch DistributedDataParallel** runtime that brought the same experiment class below **5 hours**—an approximately **13× reduction in iteration time** from the initial baseline.
+
+<section class="training-runtime training-runtime--turnaround" aria-label="LCCNet training turnaround and distributed runtime">
+  <header class="training-runtime__header">
+    <div><span>EXPERIMENT TURNAROUND</span><strong>Remove host-side waste, then scale the optimized path</strong></div>
+    <div class="training-runtime__result"><strong>≈13×</strong><span>end-to-end reduction</span></div>
+  </header>
+  <div class="training-runtime__flow">
+    <article><span>01 · INITIAL PIPELINE</span><strong>≈60 hours</strong><small>CPU-heavy geometry, projection, and perturbation repeatedly executed online</small></article>
+    <article><span>02 · DATA-PATH OPTIMIZATION</span><strong>≈20 hours</strong><small>reusable computation precomputed · sequential TAR-sharded streaming</small></article>
+    <article><span>03 · DISTRIBUTED RUNTIME</span><strong>&lt;5 hours</strong><small>world-size-configurable DDP · deterministic shard ownership</small></article>
+  </div>
+  <aside class="training-runtime__boundary">
+    <div><span>DATA PLANE</span><strong>Keep accelerators fed</strong><small>precomputed geometry · TAR streaming · persistent workers · overlapped host-to-device transfer</small></div>
+    <b aria-hidden="true">+</b>
+    <div><span>CONTROL PLANE</span><strong>Preserve experiment correctness at scale</strong><small>rank-aware seeding · synchronized gradients and learned losses · global metrics · full-state resume</small></div>
+  </aside>
+</section>
+
+<div id="evaluation" class="project-stage-heading case-study-anchor"><span>05</span><div><small>EVALUATION</small><h3>Separate capture range from operating accuracy</h3></div></div>
 
 <div class="impact-comparison" aria-label="LCCNet large-error recovery envelope">
   <div class="impact-comparison__value"><span>CONTROLLED PERTURBATION</span><strong>up to 10°</strong><small>rotational disturbance</small></div>
@@ -134,7 +156,7 @@ Controlled perturbation evaluation demonstrated recovery from rotational disturb
   <div><span>HELD-OUT VEHICLE</span><strong>&lt;0.6°</strong><small>rotation error</small></div>
 </div>
 
-<div id="deployment" class="project-stage-heading case-study-anchor"><span>05</span><div><small>PRODUCTION SYSTEM</small><h3>Ship the same geometry into C++</h3></div></div>
+<div id="deployment" class="project-stage-heading case-study-anchor"><span>06</span><div><small>PRODUCTION SYSTEM</small><h3>Ship the same geometry into C++</h3></div></div>
 
 I productionized the model through **PyTorch → ONNX → TensorRT → C++** and integrated it into the onboard autonomy stack. The runtime includes:
 
@@ -152,7 +174,7 @@ Beyond headline accuracy, I built a diagnostic framework for understanding model
 
 ## Technology
 
-`Python` · `C++` · `PyTorch` · `OpenCV` · `ONNX` · `TensorRT` · `CUDA` · `Distributed Training` · `Protobuf` · `Docker` · `Sensor Fusion` · `3D Geometry`
+`Python` · `C++` · `PyTorch` · `PyTorch DistributedDataParallel` · `NCCL` · `Distributed Sampling` · `TAR-Sharded Streaming` · `Geometry Precomputation` · `Global Metric Reduction` · `OpenCV` · `ONNX` · `TensorRT` · `CUDA` · `Protobuf` · `Docker` · `Sensor Fusion` · `3D Geometry`
 
 <a class="project-companion" href="{{ '/projects/lilinet-calibration/' | relative_url }}"><span>COMPANION SYSTEM</span><strong>LiLiNet · Neural LiDAR–LiDAR Calibration</strong><b>View case study →</b></a>
 

@@ -31,6 +31,7 @@ I independently architected, trained, diagnosed, and shipped **LiLiNet**, a prod
   <a href="#data">Data</a>
   <a href="#formulation">Formulation</a>
   <a href="#architecture">Architecture</a>
+  <a href="#training">Training</a>
   <a href="#evaluation">Evaluation</a>
   <a href="#deployment">Deployment</a>
   <a href="#insights">Insights</a>
@@ -110,7 +111,29 @@ LiLiNet converts each synchronized point cloud into a full-azimuth **256 × 1536
   <figcaption><strong>Figure 2.</strong> A fully synthetic LiDAR–LiDAR alignment visualization. The mis-calibrated input exposes the rigid-pose error as duplicated walls, vehicles, curbs, and poles; predicted calibration collapses the two colored clouds back toward the reference geometry. No proprietary point clouds, environments, or sensor hardware is shown.</figcaption>
 </figure>
 
-<div id="evaluation" class="project-stage-heading case-study-anchor"><span>04</span><div><small>EVALUATION</small><h3>Measure recovery and operating performance separately</h3></div></div>
+<div id="training" class="project-stage-heading case-study-anchor"><span>04</span><div><small>DISTRIBUTED TRAINING RUNTIME</small><h3>Treat scale, evaluation, and recovery as one system</h3></div></div>
+
+LiLiNet hardens multi-accelerator training beyond basic gradient synchronization. Its **PyTorch DistributedDataParallel / NCCL runtime** combines vehicle-aware weighted sampling, deterministic per-rank execution, duplicate-free distributed validation, globally reduced metrics, optional synchronized batch normalization, and rank-coordinated operational controls. Strict resume contracts preserve optimizer, scheduler, learned-loss, raw-model, and EMA state so interrupted or extended experiments continue without silently changing model semantics. Multi-accelerator execution increased experimental capacity, while end-to-end profiling localized the remaining throughput ceiling to CPU-side point-cloud loading, spherical rasterization, and nearest-neighbor correspondence construction.
+
+<section class="training-runtime training-runtime--lilinet" aria-label="LiLiNet distributed training runtime">
+  <header class="training-runtime__header">
+    <div><span>PRODUCTION-HARDENED TRAINING SYSTEM</span><strong>Deterministic scale-out with a profiled data path</strong></div>
+    <div class="training-runtime__result"><strong>PROFILED</strong><span>end-to-end throughput</span></div>
+  </header>
+  <div class="training-runtime__flow">
+    <article><span>01 · LAUNCH</span><strong>Rank-aware execution</strong><small>torchrun · NCCL/Gloo backend · process-local seeding</small></article>
+    <article><span>02 · SAMPLE</span><strong>Distribution-aware shards</strong><small>vehicle-weighted training · no-padding evaluation</small></article>
+    <article><span>03 · OPTIMIZE</span><strong>Synchronized model state</strong><small>DDP gradients · optional SyncBatchNorm · learned-loss sync</small></article>
+    <article><span>04 · RECOVER</span><strong>Strict experiment continuity</strong><small>global metrics · raw/EMA checkpoints · coordinated stop control</small></article>
+  </div>
+  <aside class="training-runtime__boundary">
+    <div><span>DISTRIBUTED EXECUTION</span><strong>Correctness-preserving scale-out</strong><small>world-size-configurable DDP with deterministic sampling, evaluation, and recovery contracts</small></div>
+    <b aria-hidden="true">→</b>
+    <div><span>PROFILED THROUGHPUT CEILING</span><strong>CPU-side geometric preprocessing</strong><small>point-cloud I/O · spherical projection · nearest-neighbor correspondence construction</small></div>
+  </aside>
+</section>
+
+<div id="evaluation" class="project-stage-heading case-study-anchor"><span>05</span><div><small>EVALUATION</small><h3>Measure recovery and operating performance separately</h3></div></div>
 
 <div class="impact-comparison" aria-label="LiLiNet large-error recovery envelope">
   <div class="impact-comparison__value"><span>CONTROLLED PERTURBATION</span><strong>up to 10°</strong><small>rotational disturbance</small></div>
@@ -121,7 +144,7 @@ LiLiNet converts each synchronized point cloud into a full-azimuth **256 × 1536
 
 Controlled perturbation evaluation demonstrated recovery from rotational disturbances of up to **10° to approximately 0.5° residual error**. At the distinct production operating point, LiLiNet achieved **+62.5% rotational improvement** on session-held-out evaluation. Offline translation improved from **15.20 cm to 4.52 cm (+70.3%)**, and **208 of 217 evaluated frames** improved. Production write-back deliberately preserves the trusted rig translation while applying the learned rotational correction.
 
-<div id="deployment" class="project-stage-heading case-study-anchor"><span>05</span><div><small>PRODUCTION SYSTEM</small><h3>Carry the geometry contract onto the vehicle</h3></div></div>
+<div id="deployment" class="project-stage-heading case-study-anchor"><span>06</span><div><small>PRODUCTION SYSTEM</small><h3>Carry the geometry contract onto the vehicle</h3></div></div>
 
 I productionized the full path through **PyTorch → ONNX → TensorRT → C++** and integrated it into the onboard autonomy stack. The runtime includes:
 
@@ -140,7 +163,7 @@ The evaluation protocol also separates session-held-out accuracy from whole-vehi
 
 ## Technology
 
-`Python` · `C++` · `PyTorch` · `Distributed Training` · `3D Geometry` · `Point Clouds` · `ONNX` · `TensorRT` · `CUDA` · `Eigen` · `Protobuf` · `Bazel` · `Sensor Fusion`
+`Python` · `C++` · `PyTorch` · `PyTorch DistributedDataParallel` · `NCCL` · `Distributed Sampling` · `Distributed Evaluation` · `SyncBatchNorm` · `EMA Checkpointing` · `3D Geometry` · `Point Clouds` · `ONNX` · `TensorRT` · `CUDA` · `Eigen` · `Protobuf` · `Bazel` · `Sensor Fusion`
 
 <a class="project-companion" href="{{ '/projects/lccnet-calibration/' | relative_url }}"><span>COMPANION SYSTEM</span><strong>LCCNet · Neural Camera–LiDAR Calibration</strong><b>View case study →</b></a>
 

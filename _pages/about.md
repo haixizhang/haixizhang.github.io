@@ -5,7 +5,7 @@ permalink: /
 subtitle: ML / Computer Vision / Robotics Engineer · Multimodal Perception · Production ML Systems
 profile:
   align: right
-  image: prof_pic.jpg
+  image: prof_pic_2026_blue.png
   image_circular: false
 selected_papers: false
 social: true

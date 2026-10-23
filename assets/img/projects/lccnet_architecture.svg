@@ -62,16 +62,16 @@
 
   <rect x="444" y="256" width="176" height="92" rx="10" class="box encoder"/>
   <text x="532" y="284" text-anchor="middle" class="blockTitle">LiDAR Encoder</text>
-  <text x="532" y="307" text-anchor="middle" class="blockText">independent branch · GroupNorm</text>
+  <text x="532" y="307" text-anchor="middle" class="blockText">depth / intensity · GroupNorm</text>
   <text x="532" y="328" text-anchor="middle" class="tensor">F_L¹⁄⁸ , F_L¹⁄³²</text>
 
   <rect x="444" y="432" width="176" height="96" rx="10" class="box encoder"/>
   <text x="532" y="460" text-anchor="middle" class="blockTitle">Camera FiLM</text>
   <text x="532" y="483" text-anchor="middle" class="tensor">F′ = F ⊙ (1+γ_c)+β_c</text>
-  <text x="532" y="506" text-anchor="middle" class="blockText">viewpoint-conditioned features</text>
+  <text x="532" y="506" text-anchor="middle" class="blockText">camera-conditioned features</text>
 
   <rect x="664" y="138" width="216" height="112" rx="10" class="box fusion"/>
-  <text x="772" y="167" text-anchor="middle" class="blockTitle">Bidirectional Cross-Attention</text>
+  <text x="772" y="167" text-anchor="middle" class="blockTitle" style="font-size:14px">Bidirectional Cross-Attention</text>
   <text x="772" y="191" text-anchor="middle" class="tensor">Q_R K_L V_L  ↔  Q_L K_R V_R</text>
   <text x="772" y="214" text-anchor="middle" class="blockText">1/8-scale local correspondence</text>
   <text x="772" y="233" text-anchor="middle" class="blockText">position-aware multimodal matching</text>
@@ -88,7 +88,7 @@
 
   <rect x="918" y="292" width="160" height="100" rx="10" class="box head"/>
   <text x="998" y="321" text-anchor="middle" class="blockTitle">Translation Head</text>
-  <text x="998" y="345" text-anchor="middle" class="blockText">local features + coarse context</text>
+  <text x="998" y="345" text-anchor="middle" class="blockText">local + coarse geometry</text>
   <text x="998" y="370" text-anchor="middle" class="tensor">t_pred ∈ R³</text>
 
   <rect x="1110" y="190" width="134" height="92" rx="10" class="box output"/>
@@ -98,8 +98,8 @@
 
   <rect x="1110" y="326" width="134" height="88" rx="10" class="box output"/>
   <text x="1177" y="355" text-anchor="middle" class="blockTitle">Composition</text>
-  <text x="1177" y="379" text-anchor="middle" class="tensor">T_final = ΔT_pred T_init</text>
-  <text x="1177" y="399" text-anchor="middle" class="blockText">updated sensor geometry</text>
+  <text x="1177" y="379" text-anchor="middle" class="tensor">ΔT_pred · T_init</text>
+  <text x="1177" y="399" text-anchor="middle" class="blockText">updated extrinsics</text>
 
   <path d="M196 155 H236" class="line"/><path d="M404 155 H444" class="line"/>
   <path d="M196 303 H236" class="line"/><path d="M404 303 H444" class="line"/>

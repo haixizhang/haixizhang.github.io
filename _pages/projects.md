@@ -11,7 +11,7 @@ horizontal: false
 
 <div class="projects">
 
-<p class="work-intro">As sole technical owner, I take production ML and robotics systems from initial requirements and data contracts through independent design, implementation, and validation—and, for deployed systems, onboard integration. The work below emphasizes measurable recovery, cross-domain robustness, and complete engineering ownership.</p>
+<p class="work-intro">I design, train, and deploy neural perception systems. As technical owner of three ML/CV systems, I build the models, data pipelines, distributed training, and onboard inference that turn geometric learning into measurable results. My shared calibration-data pipeline streamed <strong>17+ TB of raw logs</strong> in a single pass to produce <strong>~600 GB of data for both calibration models</strong>.</p>
 
 <h2 class="category work-category">Industry Systems</h2>
 
@@ -19,14 +19,14 @@ horizontal: false
   <header class="calibration-suite__header">
     <div class="calibration-suite__eyebrow">PRODUCTION CALIBRATION PORTFOLIO</div>
     <h2>Neural Sensor Calibration Systems</h2>
-    <p>Two independently developed and deployed systems covering camera–LiDAR and LiDAR–LiDAR extrinsic calibration—recovering large rotational disturbances to sub-degree residuals, scaling training through a reusable distributed runtime, and carrying the same geometry into production C++.</p>
+    <p>Two neural calibration systems designed, trained, and deployed end to end: cross-modal attention and camera conditioning for camera–LiDAR geometry, and shared spherical features with circular correlation for cross-LiDAR alignment.</p>
   </header>
 
   <div class="suite-results" aria-label="Calibration portfolio results">
     <div><strong>2</strong><span>production systems deployed</span></div>
-    <div><strong>500+ GB</strong><span>multimodal sensor data</span></div>
-    <div><strong>10° → &lt;1°</strong><span>controlled recovery</span></div>
-    <div><strong>Scale-out</strong><span>reusable distributed training runtime</span></div>
+    <div><strong>2 regions</strong><span>automated data collection</span></div>
+    <div><strong>~13×</strong><span>training acceleration</span></div>
+    <div><strong>SE(3) / SO(3)</strong><span>geometry-aware neural learning</span></div>
   </div>
 
 <article class="industry-feature industry-feature--lccnet">
@@ -36,18 +36,18 @@ horizontal: false
       <div class="industry-feature__status"><i aria-hidden="true"></i>Production · Deployed</div>
     </div>
     <h2><a href="{{ '/projects/lccnet-calibration/' | relative_url }}">Neural Camera–LiDAR Calibration</a></h2>
-    <p class="industry-feature__lead">A production 6-DoF calibration system that learns corrective geometry from RGB and LiDAR evidence, scales through a world-size-aware training runtime, recovers perturbations as large as 10° to sub-degree residuals, and closes the loop onboard.</p>
+    <p class="industry-feature__lead">Designed, trained, and deployed a 6-DoF camera–LiDAR calibration network with dual encoders, camera-conditioned FiLM, and cross-modal attention. On an unseen vehicle, the deployed model reduced rotation error by <strong>95% (2.95° → 0.14°)</strong> and reprojection error by <strong>89% (22.4 → 2.4 px)</strong>.</p>
     <div class="project-metrics">
-      <div><strong>500+ GB</strong><span>sensor data</span></div>
-      <div><strong>50K+</strong><span>curated pairs</span></div>
-      <div><strong>0.31°</strong><span>fleet validation</span></div>
-      <div><strong>&lt;0.6°</strong><span>held-out vehicle</span></div>
+      <div><strong>95%</strong><span>less rotation error · unseen vehicle</span></div>
+      <div><strong>89%</strong><span>less reprojection error · unseen vehicle</span></div>
+      <div><strong>~100K</strong><span>training frames</span></div>
+      <div><strong>~13×</strong><span>training acceleration</span></div>
     </div>
     <div class="industry-feature__footer">
       <div class="industry-feature__stack">
         <b>TECHNICAL CAPABILITIES</b>
         <div class="industry-feature__tags">
-          <span>Multimodal Deep Learning</span><span>Camera–LiDAR Extrinsic Calibration</span><span>Cross-Modal Attention</span><span>SE(3) Optimization</span><span>Distributed Training Systems</span><span>PyTorch DDP / NCCL</span><span>3D Projection Geometry</span><span>Domain Generalization</span><span>Fleet-Scale Data Engineering</span><span>Onboard Inference</span>
+          <span>Dual-Branch Encoders</span><span>Camera-Conditioned FiLM</span><span>Cross-Modal Attention</span><span>Geometric Supervision</span><span>Distributed Training Systems</span><span>PyTorch DDP / NCCL</span><span>3D Projection Geometry</span><span>Sensor-Clock Synchronization</span><span>Airflow / Kubernetes</span><span>Onboard Inference</span>
         </div>
       </div>
       <a class="industry-feature__cta" href="{{ '/projects/lccnet-calibration/' | relative_url }}">Explore the case study <span aria-hidden="true">↗</span></a>
@@ -55,8 +55,8 @@ horizontal: false
   </div>
   <div class="industry-feature__visual">
     <div class="industry-feature__media">
-      <img src="{{ '/assets/img/projects/lccnet_qualitative_calibration.jpg' | relative_url }}" alt="Synthetic LCCNet comparison showing predicted calibration, a visibly rotated mis-calibrated input, and reference alignment" loading="lazy" decoding="async" data-zoomable>
-      <div class="industry-feature__visual-meta"><span>QUALITATIVE RECOVERY</span><small>Fully synthetic · click to enlarge</small></div>
+      <img src="{{ '/assets/img/projects/lccnet_architecture.svg' | relative_url }}?v=20261021-network" alt="LCCNet neural network with dual encoders, camera-conditioned FiLM, cross-modal attention, and rotation/translation heads" loading="lazy" decoding="async" data-zoomable>
+      <div class="industry-feature__visual-meta"><span>NEURAL NETWORK DESIGN</span><small>FiLM + cross-attention · click to enlarge</small></div>
     </div>
   </div>
 </article>
@@ -68,18 +68,18 @@ horizontal: false
       <div class="industry-feature__status"><i aria-hidden="true"></i>Production · Deployed</div>
     </div>
     <h2><a href="{{ '/projects/lilinet-calibration/' | relative_url }}">Neural LiDAR–LiDAR Calibration</a></h2>
-    <p class="industry-feature__lead">A geometry-aware system that combines full-azimuth correlation with a production-hardened distributed training runtime, recovers cross-LiDAR alignment from large rotational disturbances, and ships through TensorRT/C++.</p>
+    <p class="industry-feature__lead">Built a LiDAR–LiDAR calibration network from scratch with shared spherical encoders, circular azimuth correlation, and sensor-conditioned rotation/translation heads. Deployed the model onboard, reducing fleet rotation error by <strong>63% (0.93° → 0.35°)</strong>.</p>
     <div class="project-metrics">
-      <div><strong>5K+</strong><span>curated pairs</span></div>
-      <div><strong>+62.5%</strong><span>improvement</span></div>
-      <div><strong>0.35°</strong><span>session held-out</span></div>
-      <div><strong>95.9%</strong><span>frames improved</span></div>
+      <div><strong>63%</strong><span>less fleet rotation error</span></div>
+      <div><strong>83%</strong><span>less rotation error · testing</span></div>
+      <div><strong>96%</strong><span>evaluated frames improved</span></div>
+      <div><strong>~20K</strong><span>training frames</span></div>
     </div>
     <div class="industry-feature__footer">
       <div class="industry-feature__stack">
         <b>TECHNICAL CAPABILITIES</b>
         <div class="industry-feature__tags">
-          <span>3D Deep Learning</span><span>Cross-LiDAR Extrinsic Calibration</span><span>Point-Cloud Registration</span><span>Spherical Range Imaging</span><span>Circular Correlation</span><span>SO(3) / SE(3) Optimization</span><span>Distributed Training Systems</span><span>PyTorch DDP / NCCL</span><span>Distributed Evaluation</span><span>Robust Pose Aggregation</span>
+          <span>Shared GroupNorm Encoders</span><span>Sensor Conditioning</span><span>Multi-Scale Pose Heads</span><span>Spherical Range Imaging</span><span>Circular Correlation</span><span>SO(3) / SE(3) Optimization</span><span>Distributed Training Systems</span><span>PyTorch DDP / NCCL</span><span>Motion-Aware Collection</span><span>Geometric Label Auditing</span>
         </div>
       </div>
       <a class="industry-feature__cta" href="{{ '/projects/lilinet-calibration/' | relative_url }}">Explore the case study <span aria-hidden="true">↗</span></a>
@@ -87,8 +87,8 @@ horizontal: false
   </div>
   <div class="industry-feature__visual">
     <div class="industry-feature__media">
-      <img src="{{ '/assets/img/projects/lilinet_qualitative_calibration.jpg' | relative_url }}" alt="Synthetic LiLiNet comparison showing aligned main and blind-spot LiDAR clouds, a rigidly mis-calibrated input, and reference alignment" loading="lazy" decoding="async" data-zoomable>
-      <div class="industry-feature__visual-meta"><span>CROSS-LIDAR ALIGNMENT</span><small>Fully synthetic · click to enlarge</small></div>
+      <img src="{{ '/assets/img/projects/lilinet_architecture.svg' | relative_url }}?v=20261021-network" alt="LiLiNet neural network with shared spherical encoders, circular azimuth correlation, sensor conditioning, and task-specific pose heads" loading="lazy" decoding="async" data-zoomable>
+      <div class="industry-feature__visual-meta"><span>GEOMETRIC NEURAL LEARNING</span><small>Spherical features + correlation · click to enlarge</small></div>
     </div>
   </div>
 </article>
@@ -98,21 +98,21 @@ horizontal: false
   <div class="industry-feature__content">
     <div class="industry-feature__meta">
       <div class="industry-feature__eyebrow">03 · IN-CABIN · OCCUPANT PERCEPTION</div>
-      <div class="industry-feature__status"><i aria-hidden="true"></i>Active Development</div>
+      <div class="industry-feature__status"><i aria-hidden="true"></i>Integrated · Vehicle Evaluated</div>
     </div>
-    <h2><a href="{{ '/projects/occupant-state-monitoring/' | relative_url }}">In-Cabin Occupant State Perception</a></h2>
-    <p class="industry-feature__lead">A dual-head perception system that jointly classifies seat occupancy and occupant posture from fisheye cabin imagery, with leakage-resistant data construction, deterministic evaluation, and a deployable ONNX interface.</p>
-    <div class="project-metrics project-metrics--capabilities">
-      <div><b>01 · MODEL</b><strong>Seat-aware multi-task inference</strong><span>shared visual representation for occupancy and posture classification</span></div>
-      <div><b>02 · DATA</b><strong>Session-isolated data contract</strong><span>burst-aware sampling with recording-level separation</span></div>
-      <div><b>03 · VALIDATION</b><strong>Safety-oriented error taxonomy</strong><span>directional errors, per-class recall, and degeneration checks</span></div>
-      <div><b>04 · SYSTEM</b><strong>Deterministic deployment interface</strong><span>versioned preprocessing, tensor semantics, and output gating</span></div>
+    <h2><a href="{{ '/projects/occupant-state-monitoring/' | relative_url }}">In-Cabin Occupant Perception</a></h2>
+    <p class="industry-feature__lead">Front- and rear-seat occupant monitoring built from RTMO detector/keypoint fine-tuning and a ResNet-18 multi-task occupancy/posture network, then integrated with iToF seating position, VLM temporal fusion, and confidence-aware vehicle messaging.</p>
+    <div class="project-metrics">
+      <div><strong>99.3%</strong><span>occupancy F1</span></div>
+      <div><strong>95.8%</strong><span>posture Macro-F1</span></div>
+      <div><strong>89.2%</strong><span>seat-depth accuracy</span></div>
+      <div><strong>1.4 cm</strong><span>stable height MAE</span></div>
     </div>
     <div class="industry-feature__footer">
       <div class="industry-feature__stack">
         <b>TECHNICAL CAPABILITIES</b>
         <div class="industry-feature__tags">
-          <span>In-Cabin Computer Vision</span><span>Multi-Task Visual Learning</span><span>Occupancy Classification</span><span>Occupant Posture Recognition</span><span>Fisheye ROI Modeling</span><span>Leakage-Resistant Evaluation</span><span>Class-Imbalance Diagnostics</span><span>Safety-Critical Error Analysis</span><span>Deterministic Model Export</span>
+          <span>RTMO Fine-Tuning</span><span>Person / Keypoint Detection</span><span>Multi-Task ResNet-18</span><span>iToF Seating Position</span><span>VLM Integration</span><span>Temporal Fusion</span><span>Per-Seat State</span><span>Vehicle Interfaces</span><span>Real-Vehicle Evaluation</span>
         </div>
       </div>
       <a class="industry-feature__cta" href="{{ '/projects/occupant-state-monitoring/' | relative_url }}">Explore the case study <span aria-hidden="true">↗</span></a>
@@ -120,8 +120,8 @@ horizontal: false
   </div>
   <div class="industry-feature__visual">
     <div class="industry-feature__media">
-      <img src="{{ '/assets/img/projects/oms_architecture.svg' | relative_url }}" alt="Schematic architecture for per-seat occupancy and occupant-posture classification from fisheye imagery" loading="lazy" decoding="async" data-zoomable>
-      <div class="industry-feature__visual-meta"><span>CURRENT VISUAL BASELINE</span><small>Schematic · click to enlarge</small></div>
+      <img src="{{ '/assets/img/projects/oms_architecture.svg' | relative_url }}?v=20261021-model" alt="Integrated occupant perception architecture with RTMO detection, posture, iToF seating position, VLM temporal fusion, and vehicle messages" loading="lazy" decoding="async" data-zoomable>
+      <div class="industry-feature__visual-meta"><span>INTEGRATED PERCEPTION SYSTEM</span><small>Schematic · click to enlarge</small></div>
     </div>
   </div>
 </article>

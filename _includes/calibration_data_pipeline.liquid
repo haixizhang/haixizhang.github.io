@@ -1,0 +1,27 @@
+<div id="collection" class="project-stage-heading case-study-anchor"><span>05</span><div><small>AUTOMATED DATA COLLECTION</small><h3>One collection platform for both calibration systems</h3></div></div>
+
+<p>I designed and implemented a shared <strong>Airflow / Kubernetes</strong> collection platform for camera–LiDAR and LiDAR–LiDAR learning, then worked with infrastructure and operations teams to review and launch it in <strong>two regions</strong>. A single streaming read of each drive log produces both datasets, with one independently retryable Pod per log.</p>
+
+<p>The October collection streamed <strong>17+ TB of raw drive logs</strong> through single-pass extraction, producing <strong>~600 GB of camera–LiDAR and LiDAR–LiDAR calibration data</strong>. These are shared collection totals for both models; curated training-set sizes are reported separately for each model.</p>
+
+<figure class="paper-architecture">
+  <div class="paper-architecture__canvas">
+    <img src="{{ '/assets/img/projects/calibration_data_pipeline.svg' | relative_url }}?v=20261022-volume" alt="Shared calibration pipeline: stream 17+ TB of raw logs once to produce approximately 600 GB of data for both calibration models, then select training samples" loading="lazy" decoding="async">
+  </div>
+  <figcaption><strong>Shared data platform.</strong> One log read serves both models. Sensor timing, calibration-label provenance, and sample selection connect collection to reproducible model iteration.</figcaption>
+</figure>
+
+<div class="project-proof-strip">
+  <div><span>RAW LOGS STREAMED</span><strong>17+ TB</strong><small>single-pass extraction</small></div>
+  <div><span>PAIRED DATA PRODUCED</span><strong>~600 GB</strong><small>combined output for both models</small></div>
+  <div><span>COLLECTION IMAGE</span><strong>20 GB → 600 MB</strong><small>self-contained runtime</small></div>
+</div>
+
+<ul>
+  <li><strong>Orchestration and recovery.</strong> A scanner discovers uncollected logs and triggers bounded batches. Access and write-permission checks run before collection; failed logs retry independently, and output manifests report actual stored results. Production runs are triggered on demand; daily scanning is implemented and available.</li>
+  <li><strong>Sensor-clock synchronization.</strong> Header-only measurements estimate each log’s trigger offsets and timing jitter. Segmented offsets follow drift during a recording; delayed matching aligns sensor data, CAN, and poses at the frame timestamp rather than at publication or write time.</li>
+  <li><strong>Traceable geometric labels.</strong> Each sequence records the calibration rig and its source, clock selection, timing measurements, and quality thresholds. I also recalibrated fleet vehicles and used the revised rigs for recollection or explicit relabeling.</li>
+  <li><strong>Select useful views before downloading.</strong> Pose-aware deduplication limits repeated viewpoints and per-session dominance while retaining collected source data in object storage. Calibration labels and train/validation assignments remain traceable through dataset indexes.</li>
+</ul>
+
+<p>Timing measurements across <strong>16 fleet logs</strong> also exposed stale camera pairing, incorrect timing gates, and missing-sensor failure paths in the onboard calibration stack. I documented five issues and proposed fixes for the responsible onboard team.</p>

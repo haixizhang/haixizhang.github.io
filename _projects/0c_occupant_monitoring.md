@@ -1,7 +1,7 @@
 ---
 layout: page
-title: In-Cabin Occupant State Perception
-description: Active development — dual-head seat-occupancy and occupant-posture classification from fisheye cabin imagery, with leakage-resistant data splits and a deployable ONNX contract
+title: In-Cabin Occupant Perception System
+description: Front- and rear-seat occupant monitoring built from RTMO detector adaptation, ResNet-18 multi-task learning, iToF reasoning, and temporally fused VLM attributes
 img: /assets/img/projects/oms_architecture.svg
 importance: 0
 category: industry
@@ -9,124 +9,111 @@ related_publications: false
 permalink: /projects/occupant-state-monitoring/
 ---
 
-<div class="project-kicker">ACTIVE DEVELOPMENT · COMPUTER VISION · SAFETY-CRITICAL PERCEPTION</div>
+<div class="project-kicker">INTEGRATED SYSTEM · MULTIMODAL PERCEPTION · REAL-VEHICLE EVALUATION</div>
 
-As sole technical owner, I am taking an end-to-end visual perception system for **per-seat occupant state understanding** from initial requirements through active model development, validation, and production-interface integration. The current dual-head baseline jointly classifies seat occupancy and occupant posture—including forward-leaning, upright, and reclined states—while the surrounding engineering work turns raw recording sessions into reproducible supervision, separates evaluation sessions from training data, and maintains a stable interface for downstream integration.
-
-Because the project is still active, this page emphasizes the **technical contract and engineering decisions** rather than publishing provisional headline accuracy.
+As technical owner, I designed and delivered **front- and rear-seat occupant monitoring**, beginning with RTMO person/keypoint adaptation and a **ResNet-18 multi-task occupancy/posture model**, then integrating iToF seating-position reasoning, VLM attributes, temporal fusion, and confidence-aware vehicle messaging. My work spans neural-model design and training, targeted detector fine-tuning, data construction, and integration with the upstream vehicle software.
 
 <div class="project-metrics project-metrics-detail">
-  <div><strong>Active</strong><span>development status</span></div>
-  <div><strong>2 heads</strong><span>occupancy + posture</span></div>
-  <div><strong>Session-level</strong><span>held-out evaluation</span></div>
-  <div><strong>ONNX</strong><span>integration interface</span></div>
+  <div><strong>99.3%</strong><span>occupancy F1</span></div>
+  <div><strong>95.8%</strong><span>posture Macro-F1</span></div>
+  <div><strong>89.2%</strong><span>seat-depth accuracy</span></div>
+  <div><strong>1.4 cm</strong><span>stable height MAE</span></div>
 </div>
+
+The system covers **front and rear seats**. The results section documents the task-specific protocols behind these benchmarks, alongside separate rear-seat detector-adaptation results.
 
 <div class="project-overview-grid">
-  <article><span>01 · CHALLENGE</span><strong>Understand every seat from distorted cabin views</strong><p>Fisheye imagery, occlusion, posture variation, class imbalance, and temporally correlated recordings make apparently simple classification difficult to evaluate honestly.</p></article>
-  <article><span>02 · APPROACH</span><strong>Build one reproducible seat-level perception contract</strong><p>Version fixed regions of interest, isolate recording sessions, share visual features across seats, and couple model quality with deterministic data and evaluation checks.</p></article>
-  <article><span>03 · CURRENT PHASE</span><strong>Stabilize labels, metrics, and integration boundaries</strong><p>Expand label coverage, freeze the evaluation protocol, test failure modes across seeds, and validate the exported model contract before reporting final results.</p></article>
+  <article><span>01 · CHALLENGE</span><strong>Follow occupant state through difficult transitions</strong><p>Forward leaning, occlusion, entering and leaving the vehicle, and seat changes demand reliable detection and consistent seat-level state.</p></article>
+  <article><span>02 · APPROACH</span><strong>Train the visual models, then integrate their evidence</strong><p>Fine-tune RTMO for cabin-specific failures, train a shared-encoder multi-task classifier, and connect their outputs to physical signals and temporal state.</p></article>
+  <article><span>03 · RESULT</span><strong>Quantify the system on vehicle recordings</strong><p>Measure occupancy, posture, seating position, and attributes against reviewed human labels, then publish a confidence-aware vehicle message.</p></article>
 </div>
 
-<nav class="case-study-index" aria-label="Occupant monitoring case study sections">
+<nav class="case-study-index" aria-label="Occupant perception case study sections">
   <span>CASE STUDY</span>
   <a href="#context">Context</a>
-  <a href="#data">Data</a>
-  <a href="#architecture">Architecture</a>
-  <a href="#training">Training</a>
-  <a href="#evaluation">Evaluation</a>
-  <a href="#interface">Interface</a>
-  <a href="#roadmap">Roadmap</a>
+  <a href="#detection">RTMO</a>
+  <a href="#posture">Multi-Task Model</a>
+  <a href="#fusion">Fusion</a>
+  <a href="#architecture">Full System</a>
+  <a href="#evaluation">Results</a>
+  <a href="#interface">Integration</a>
 </nav>
 
 <h2 id="context" class="case-study-anchor">Problem &amp; operating context</h2>
 
-An occupant-monitoring model must convert wide-angle cabin imagery into a stable state estimate for each defined seat. The hard part is not only recognizing people. A usable system must preserve seat identity, avoid temporal leakage between train and validation data, remain interpretable under class imbalance, and expose predictable outputs to the consuming software stack.
+Occupant perception must associate a person with a seat, identify forward-leaning, upright, or reclined posture, estimate where an upright occupant is sitting, and maintain useful attributes over time. A missed person can suppress everything downstream; an old attribute estimate can become incorrect as soon as occupants change seats.
 
-The project therefore treats **data construction, model behavior, evaluation, and integration as one system** rather than optimizing an isolated image classifier.
+I treated **data construction, model adaptation, temporal state, sensor interpretation, and vehicle integration** as parts of one system. Development used AI coding agents, including collaboration with the upstream development agent, to support implementation and integration; I owned the technical decisions, model work, and evaluation.
 
-## System architecture
+<div id="detection" class="project-stage-heading case-study-anchor"><span>01</span><div><small>DETECTOR ADAPTATION</small><h3>Recover forward-leaning occupants before classifying them</h3></div></div>
 
-<div class="system-flow" aria-label="Occupant monitoring system architecture">
-  <span>Fisheye RGB sessions</span><b>→</b>
-  <span>Seat-level labels</span><b>→</b>
-  <span>Versioned ROI crops</span><b>→</b>
-  <span>Shared visual encoder</span><b>→</b>
-  <span>Multi-task heads</span><b>→</b>
-  <span>Gated state output</span>
-</div>
+RTMO-s performs one-stage person detection and predicts body keypoints; hip keypoints support seat association. The production detector’s difficult cases were occupants folded forward: some produced no candidate, while others fell below the confidence gate. I fine-tuned the detector for **front and rear cabin views**, using a targeted annotation and training workflow around those failure modes:
 
-<div id="data" class="project-stage-heading case-study-anchor"><span>01</span><div><small>DATA CONTRACT</small><h3>Turn correlated recordings into trustworthy supervision</h3></div></div>
+- Selected missed detections, already-detected forward leans, and upright/reclined controls from training sessions.
+- Created and reviewed **349 cabin frames** across front and rear views, with tight visible-body boxes and hip keypoints for seat association; converted the labels into COCO-compatible training data.
+- Fine-tuned **RTMO-s** with cabin examples mixed with COCO person data, retaining general person-detection behavior while adapting to cabin viewpoints.
+- Exported through ONNX with the existing input/output and in-graph NMS contract, then evaluated the exported model through the production seat-assignment logic.
 
-- Defined a seat-centric label schema that keeps occupancy and occupant posture explicit instead of hiding application semantics inside folder names or preprocessing code.
-- Built deterministic sample manifests from recording sessions, with fixed seat regions and reproducible mapping from frame metadata to model inputs.
-- Used **session-isolated splits** so visually adjacent frames from the same recording burst cannot inflate held-out performance.
-- Designed burst-aware sampling and dataset audits to expose duplicate frames, sparse labels, class skew, missing files, and inconsistent annotations before training.
-- Kept preprocessing configuration versioned so the same crop geometry and normalization contract can be reproduced during evaluation and export.
+On the detector’s reserved evaluation sessions, **rear-seat forward-lean confirmation increased from 72.1% to 98.6% (106/147 → 145/147)**. Front-seat model detection with correct hip-based seat assignment reached **108/111**; the unchanged bounding-box-height rule limited confirmed outputs to **88/111**. This diagnosis separated model recovery from a remaining downstream policy constraint.
 
-<div id="architecture" class="project-stage-heading case-study-anchor"><span>02</span><div><small>MODEL ARCHITECTURE</small><h3>Share perception while preserving seat-level outputs</h3></div></div>
+These detector-adaptation results use a separate protocol from the front-seat integrated-system results below.
 
-The current visual baseline crops each configured seat region from a fisheye frame and passes every crop through a shared **ResNet-18** encoder. Two task heads operate on the same representation: a binary occupancy head and a three-class posture-classification head for forward-leaning, upright, and reclined states. Deterministic output gating prevents an unoccupied seat from producing a semantically misleading posture prediction.
+<div id="posture" class="project-stage-heading case-study-anchor"><span>02</span><div><small>POSTURE MODEL &amp; DATA</small><h3>Learn posture with explicit seat and label semantics</h3></div></div>
+
+I designed and trained a **shared-encoder multi-task network** over fixed seat ROIs. An ImageNet-pretrained **ResNet-18** trunk feeds a binary occupancy head and a three-class posture head for forward lean, upright, and reclined states. A masked objective combines occupancy BCE with posture cross-entropy only on occupied, visually judgeable samples. Inference uses explicit occupancy and image-quality gating to preserve the meaning of the outputs.
+
+- Built versioned annotation rules, browser-based labeling/review tools, deterministic manifests, and burst-aware sampling.
+- Isolated recording days for training and evaluation, and restricted propagated labels to training.
+- Addressed class imbalance, seat-identity shortcuts, and augmentation/inference mismatch through diagnostics and training-set BatchNorm recalibration.
+- Completed nine-session out-of-fold evaluation over **6,337 manually labeled seat observations**, including **3,072 valid posture labels**: pooled posture Macro-F1 **0.8714**, occupancy F1 **0.9820**. This earlier model study measures recording-day variation and has its own dataset and protocol.
+
+<div id="fusion" class="project-stage-heading case-study-anchor"><span>03</span><div><small>SENSOR &amp; TEMPORAL FUSION</small><h3>Turn individual observations into a consistent occupant state</h3></div></div>
+
+**Seating position.** The system combines iToF distance and seat-track position to distinguish front-edge seating from the middle/back region. It produces this estimate when the occupant is upright, with explicit confidence and validity fields.
+
+**VLM attributes.** Repeated attribute readings are fused in a sliding window for the same occupant. Entry and exit reset the accumulated state, so the next occupant starts a new estimate. The evaluation tracks how age and height estimates change as observations accumulate, as well as their stable-window error.
+
+**Vehicle context.** Per-seat perception is combined with seat position, backrest angle, seatbelt status, door state, and gear signals in one output schema. Each estimated field carries confidence and validity so consuming software can interpret uncertain or unavailable results.
+
+<div id="architecture" class="project-stage-heading case-study-anchor"><span>04</span><div><small>SYSTEM ARCHITECTURE</small><h3>Connect complementary evidence at the seat level</h3></div></div>
 
 <figure class="paper-architecture">
   <div class="paper-architecture__canvas">
-    <img src="{{ '/assets/img/projects/oms_architecture.svg' | relative_url }}" alt="Occupant perception architecture: fisheye cabin frames are converted into versioned per-seat regions, encoded with a shared ResNet18, and passed to occupancy and posture-classification heads before deterministic output gating">
+    <img src="{{ '/assets/img/projects/oms_architecture.svg' | relative_url }}?v=20261021-model" alt="Occupant perception system: cabin images feed RTMO detection, seat-level posture classification and VLM attributes; iToF and seat signals support seating-position reasoning; temporal fusion and confidence rules produce one vehicle message per seat">
   </div>
-  <figcaption><strong>Figure 1.</strong> Current RGB baseline. A shared encoder learns reusable occupant appearance features across seat crops, while task-specific heads preserve distinct occupancy and posture objectives. The illustration is schematic and contains no proprietary imagery or cabin geometry.</figcaption>
+  <figcaption><strong>System architecture.</strong> Person detection, posture, seating position, and attributes provide distinct evidence. Per-seat state, temporal fusion, and confidence/validity rules connect their outputs to the vehicle interface. The diagram contains no proprietary imagery or cabin geometry.</figcaption>
 </figure>
 
-For seat region \(s\), the model can be summarized as
+<div id="evaluation" class="project-stage-heading case-study-anchor"><span>05</span><div><small>REAL-VEHICLE RESULTS</small><h3>Measure each capability under its operating conditions</h3></div></div>
 
-<div class="geometry-derivation" aria-label="Occupant monitoring multi-task formulation">
-  <div class="geometry-derivation__label">SEAT-LEVEL MULTI-TASK CONTRACT</div>
-  <div class="geometry-derivation__equation geometry-derivation__equation--compact">
-  \[
-    h_s=f_\theta\!\left(\operatorname{Crop}(I,\mathcal{R}_s)\right),\qquad
-    p_s^{\mathrm{occ}}=\sigma(w_o^{\mathsf T}h_s),\qquad
-    p_s^{\mathrm{posture}}=\operatorname{softmax}(W_p h_s)
-  \]
-  \[
-    \mathcal{L}=\lambda_o\,\mathcal{L}_{\mathrm{occ}}+
-    \lambda_p\,\mathbb{1}[y_s^{\mathrm{occ}}=1]\,\mathcal{L}_{\mathrm{posture}}
-  \]
-  </div>
-  <p class="geometry-derivation__note">The posture objective is meaningful only for occupied seats. Making this dependency explicit keeps the training target and downstream output semantics aligned.</p>
+The October 16, 2026 engineering report evaluates **driver and front-passenger seats from the front OMS camera**, including entry/exit, seat changes, empty seats, and multiple postures. Ground truth was manually labeled after interval sampling and grouping similar consecutive frames. Cross-annotator agreement was **96% for posture and 97% for occupancy**, with disagreements reviewed.
+
+<div class="project-results" markdown="1" role="region" aria-label="Evaluation results" tabindex="0">
+
+| Capability | Result | Evaluation condition |
+|---|---|---|
+| Occupancy | **98.7% accuracy · 98.5% recall · 99.3% F1** | Frame-level person-detection output against occupied/empty labels |
+| Posture | **96.3% accuracy · 95.8% Macro-F1** | Three classes on ground-truth occupied samples, evaluated independently of occupancy detection |
+| Forward lean | **94.7% recall · 97.3% F1** | Posture classification; errors were toward upright |
+| Seating position | **89.2% accuracy** | Front-edge vs. middle/back; output coverage **94.5%** on upright samples |
+| VLM gender | **98.0% accuracy** | Individual VLM replies |
+| Height | **1.4 cm MAE · 94.3% within ±4 cm** | Fused estimate after the observation window fills |
+| Age | **4.2 years MAE · 78.6% within ±6 years** | Fused estimate after the observation window fills |
+
 </div>
 
-<div id="training" class="project-stage-heading case-study-anchor"><span>03</span><div><small>TRAINING SYSTEM</small><h3>Make experiments repeatable, not anecdotal</h3></div></div>
+Temporal accumulation substantially improved the measured attribute estimates: from **1–2 readings to a full window**, height within ±4 cm rose from **38.7% to 94.3%**, and age within ±6 years rose from **11.3% to 78.6%**. Weight remained a weaker estimate at **8.5 kg MAE**, making it a target for further work with physical priors.
 
-- Centralized dataset, augmentation, optimizer, schedule, seed, and checkpoint configuration so experiments can be reconstructed from artifacts rather than memory.
-- Added deterministic execution controls and multi-seed runs to distinguish architecture changes from initialization noise.
-- Tracked task-specific losses and class behavior separately, preventing a strong aggregate number from masking a collapsed occupancy or posture class.
-- Preserved best-checkpoint selection and export metadata as part of the experiment contract.
-- Structured the repository around data preparation, training, evaluation, and export boundaries so changes can be audited without tracing an ad hoc notebook workflow.
+<div id="interface" class="project-stage-heading case-study-anchor"><span>06</span><div><small>VEHICLE INTEGRATION</small><h3>Deliver one interpretable message per seat</h3></div></div>
 
-<div id="evaluation" class="project-stage-heading case-study-anchor"><span>04</span><div><small>EVALUATION</small><h3>Test the failure modes that matter operationally</h3></div></div>
+The unified message carries occupancy, posture, seating position, occupant attributes, and vehicle-provided signals. Confidence and validity accompany the estimates, while timestamps and sequence numbers support downstream consumption. The quantification report includes a recorded output example from the integrated system.
 
-The evaluation plan goes beyond aggregate accuracy. It reports per-task confusion matrices and per-class behavior, checks whether every class is actually predicted, and separates directional occupancy errors because a **missed occupant** and a **false occupied seat** have different operational consequences.
-
-Session-held-out evaluation, multi-seed variation, degeneration checks, and label-quality audits are treated as release gates. Final quantitative results will be published only after the dataset and evaluation contract are frozen.
-
-<div class="project-proof-strip">
-  <div><span>LEAKAGE CONTROL</span><strong>Session split</strong><small>recording groups remain isolated</small></div>
-  <div><span>ROBUSTNESS</span><strong>Multi-seed</strong><small>variance is measured explicitly</small></div>
-  <div><span>SAFETY VIEW</span><strong>Directional errors</strong><small>failure costs remain visible</small></div>
-</div>
-
-<div id="interface" class="project-stage-heading case-study-anchor"><span>05</span><div><small>MODEL INTERFACE</small><h3>Design for integration from the beginning</h3></div></div>
-
-The baseline is exportable through **PyTorch → ONNX** with a documented tensor contract for preprocessing, seat ordering, occupancy probability, posture probabilities, and deterministic gating. This boundary is intentionally narrow: the learned model estimates visual state, while seat configuration, policy thresholds, and application-specific decisions remain explicit in the consuming system.
-
-Current integration work focuses on numerical parity, stable input shapes, reproducible preprocessing, and clear failure behavior when inputs or configuration violate the expected contract.
-
-<div id="roadmap" class="project-stage-heading case-study-anchor"><span>06</span><div><small>CURRENT ROADMAP</small><h3>Freeze the evidence before publishing the result</h3></div></div>
-
-The next milestones are to expand and audit label coverage, finalize the held-out session set, complete multi-seed comparison of the visual baselines, validate upstream frame and ROI assumptions, and lock the exported interface. Once those contracts are stable, this page can graduate from an active research case study to a result-led project with defensible headline metrics.
+This work extended my ownership from model training and ONNX contracts into **upstream integration, per-seat state management, temporal aggregation, and real-vehicle quantitative evaluation**. Further iteration focuses on difficult detector cases, upright/reclined boundaries, iToF thresholds across body types, and stronger physical constraints for attribute estimation.
 
 ## Technology
 
-`Python` · `PyTorch` · `ResNet` · `OpenCV` · `Fisheye Vision` · `Multi-Task Learning` · `Experiment Tracking` · `ONNX` · `Reproducible Evaluation`
+Python · PyTorch · RTMO · MMPose · ResNet · ONNX · Computer Vision · Keypoint Detection · iToF · VLM Integration · Temporal Fusion · Vehicle Signals · Quantitative Evaluation
 
 <a class="project-companion" href="{{ '/projects/' | relative_url }}"><span>SELECTED WORK</span><strong>Return to the complete project portfolio</strong><b>View all projects →</b></a>
 
-<p class="project-confidentiality">Architecture and workflow are summarized at a high level. No proprietary cabin imagery, customer data, vehicle counts, hardware identifiers, or unpublished performance values are shown.</p>
+<p class="project-confidentiality">Architecture and evaluation results are summarized at a high level. No proprietary cabin imagery, raw recordings, internal endpoints, or vehicle identifiers are included.</p>

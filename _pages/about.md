@@ -3,6 +3,7 @@ layout: about
 title: about
 permalink: /
 subtitle: ML / Computer Vision / Robotics Engineer · Multimodal Perception · Production ML Systems
+description: Haixi Zhang designs, trains, and deploys machine learning systems for computer vision, sensor calibration, and robotics.
 profile:
   align: right
   image: prof_pic_2026_blue.png
@@ -12,22 +13,22 @@ social: true
 ---
 Hi, I’m **Haixi Zhang**, an **ML / Computer Vision / Robotics Engineer** based in **San Jose, CA**. I hold an **M.Eng. in Electrical & Computer Engineering** from Cornell University and a **B.S. in Electrical & Computer Engineering** from the University of Rochester.
 
-I specialize in production perception systems that combine **multimodal sensor data, 3D geometry, deep learning, and accelerated onboard inference**. At Tensor Auto, I serve as the **sole technical owner of three company-level ML/CV systems**: I translate high-level product direction into concrete requirements and independently carry the core technical work from data and model development through validation and integration. Two systems have been delivered to onboard production; the third remains under active development.
+I build production perception systems that combine **multimodal sensor data, 3D geometry, and deep learning**. At Tensor Auto, I am the **sole technical owner of three ML/CV systems**, from network design and training to data pipelines and onboard inference. I designed, trained, and deployed two neural sensor-calibration systems. I also built and evaluated front- and rear-seat occupant perception, combining person detection, posture classification, iToF reasoning, and VLM temporal fusion.
 
 <a class="home-feature home-feature--suite" href="{{ '/projects/' | relative_url }}">
   <span class="home-feature__label">FEATURED INDUSTRY WORK</span>
-  <strong>Production Perception Systems—Built from Data to Deployment</strong>
-  <span>Ownership from initial requirements and data contracts through system design, scalable distributed training, production validation, TensorRT optimization, and onboard C++ deployment.</span>
+  <strong>Neural Perception Systems—Designed, Trained &amp; Deployed</strong>
+  <span>Camera–LiDAR and LiDAR–LiDAR calibration built from network design through TensorRT/C++ deployment, alongside integrated occupant perception.</span>
   <span class="home-feature__results">
     <em><b>3</b> systems owned end to end</em>
     <em><b>2</b> production deployments</em>
-    <em><b>500+ GB</b> multimodal sensor data</em>
-    <em><b>10° → &lt;1°</b> calibration recovery</em>
+    <em><b>95%</b> less rotation error · unseen vehicle</em>
+    <em><b>63%</b> less fleet rotation error · LiLiNet</em>
   </span>
   <span class="home-feature__systems">
     <em><b>LCCNet</b> · Deployed</em>
     <em><b>LiLiNet</b> · Deployed</em>
-    <em><b>In-Cabin Perception</b> · Active Development</em>
+    <em><b>In-Cabin Perception</b> · Vehicle Evaluated</em>
   </span>
   <b>Explore selected work →</b>
 </a>
@@ -38,8 +39,8 @@ I specialize in production perception systems that combine **multimodal sensor d
   <section class="home-focus-row">
     <span>01</span>
     <div>
-      <h4>Multimodal Perception & Geometry</h4>
-      <p>Building learning systems around physical sensor relationships, including <strong>camera–LiDAR calibration</strong>, <strong>cross-LiDAR alignment</strong>, <strong>occupant perception</strong>, and <strong>SE(3) / SO(3)</strong> geometry.</p>
+      <h4>Neural Model Design &amp; Geometric Learning</h4>
+      <p>Designing <strong>dual-branch encoders, cross-modal attention, camera-conditioned FiLM, and spherical correlation</strong>, with SE(3) / SO(3) objectives for sensor calibration and multi-task visual learning for occupant perception.</p>
     </div>
   </section>
   <section class="home-focus-row">
@@ -53,7 +54,7 @@ I specialize in production perception systems that combine **multimodal sensor d
     <span>03</span>
     <div>
       <h4>Data & Evaluation Systems</h4>
-      <p>Developing <strong>fleet-scale sensor pipelines</strong>, automatic labeling, session-isolated evaluation, hard-case analysis, and regression testing for defensible deployment decisions.</p>
+      <p>Built a shared <strong>Airflow/Kubernetes sensor-data pipeline</strong> that streamed <strong>17+ TB of raw logs</strong> in a single pass to produce <strong>~600 GB of calibration data</strong>, with measured clock synchronization, traceable labels, and view-aware selection.</p>
     </div>
   </section>
 </div>

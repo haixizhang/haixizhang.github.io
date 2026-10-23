@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Production-Grade Neural Camera–LiDAR Calibration
-description: End-to-end 6-DoF online calibration—from 500+ GB of multimodal sensor data to TensorRT deployment in an onboard C++ system
+description: Designed, trained, and deployed camera–LiDAR calibration that reduced rotation error by 95% on an unseen vehicle
 importance: 0
 category: industry
 related_publications: false
@@ -10,28 +10,29 @@ permalink: /projects/lccnet-calibration/
 
 <div class="project-kicker">PRODUCTION ML · AUTONOMOUS SYSTEMS · END-TO-END OWNERSHIP</div>
 
-As sole technical owner, I took a learning-based system for **online 6-DoF camera–LiDAR extrinsic calibration** from initial requirements to production deployment. I independently designed and implemented its core data, geometry, model, training, evaluation, and runtime components, spanning fleet-scale sensor processing, geometric validation, multimodal learning, ONNX/TensorRT optimization, and onboard C++ integration.
+I **designed, trained, and deployed a 6-DoF camera–LiDAR calibration network** with dual RGB/LiDAR encoders, camera-conditioned FiLM, cross-modal attention, and geometry-aware losses. On an **unseen vehicle**, the deployed model reduced rotation error by **95% (2.95° → 0.14°)** and reprojection error by **89% (22.4 → 2.4 px)**. As sole technical owner, I also built its data pipeline, distributed training, and **ONNX → TensorRT → onboard C++** integration.
 
 <div class="project-metrics project-metrics-detail">
-  <div><strong>500+ GB</strong><span>multimodal sensor data</span></div>
-  <div><strong>50K+</strong><span>quality-controlled pairs</span></div>
-  <div><strong>0.31°</strong><span>fleet validation error</span></div>
-  <div><strong>&lt;0.6°</strong><span>held-out vehicle error</span></div>
+  <div><strong>95%</strong><span>less rotation error · unseen vehicle</span></div>
+  <div><strong>6-DoF</strong><span>learned residual correction</span></div>
+  <div><strong>89%</strong><span>less reprojection error · unseen vehicle</span></div>
+  <div><strong>~13×</strong><span>training acceleration</span></div>
 </div>
 
 <div class="project-overview-grid">
   <article><span>01 · CHALLENGE</span><strong>Calibration drift breaks sensor agreement</strong><p>Even a small camera–LiDAR offset corrupts projection geometry and propagates error into downstream perception.</p></article>
-  <article><span>02 · APPROACH</span><strong>Learn correction from paired evidence</strong><p>Fuse RGB appearance with rasterized depth and intensity while preserving camera identity and 3D geometric constraints.</p></article>
-  <article><span>03 · OUTCOME</span><strong>Close the loop onboard</strong><p>From quality-gated fleet logs to TensorRT inference, robust aggregation, health diagnostics, and sensor-rig generation.</p></article>
+  <article><span>02 · APPROACH</span><strong>Design the network around sensor geometry</strong><p>Dual encoders, camera-conditioned FiLM, and learned cross-modal correspondence feed separate rotation and translation heads.</p></article>
+  <article><span>03 · OUTCOME</span><strong>Improve calibration on unseen data</strong><p>The deployed model reduced rotation error by 95% and reprojection error by 89% on an unseen vehicle.</p></article>
 </div>
 
 <nav class="case-study-index" aria-label="LCCNet case study sections">
   <span>CASE STUDY</span>
   <a href="#context">Context</a>
-  <a href="#data">Data</a>
   <a href="#formulation">Formulation</a>
-  <a href="#architecture">Architecture</a>
+  <a href="#architecture">Network</a>
   <a href="#training">Training</a>
+  <a href="#data">Data</a>
+  <a href="#collection">Collection</a>
   <a href="#evaluation">Evaluation</a>
   <a href="#deployment">Deployment</a>
   <a href="#insights">Insights</a>
@@ -52,15 +53,7 @@ Camera–LiDAR misalignment degrades the geometric consistency required by downs
   <span>Sensor-rig update</span>
 </div>
 
-<div id="data" class="project-stage-heading case-study-anchor"><span>01</span><div><small>DATA &amp; GEOMETRY</small><h3>Convert raw fleet logs into trusted pairs</h3></div></div>
-
-- Built a scalable pipeline processing **500+ GB of camera, LiDAR, vehicle-state, and odometry logs** into synchronized, reproducible training and evaluation data.
-- Implemented temporal alignment, LiDAR motion compensation, virtual-camera rectification, deterministic point selection, and session-level dataset partitioning.
-- Added automated gates for motion state, illumination, exposure, blur, point density, depth distribution, and calibration consistency.
-- Detected and rejected stale sensor configurations with errors approaching **10°**, preventing corrupted geometry from entering training and deployment evaluation.
-- Eliminated pose-dependent field-of-view leakage and aligned the Python training pipeline with the production C++ preprocessing contract.
-
-<div id="formulation" class="project-stage-heading case-study-anchor"><span>02</span><div><small>GEOMETRIC FORMULATION</small><h3>Learn a correction—not an absolute pose</h3></div></div>
+<div id="formulation" class="project-stage-heading case-study-anchor"><span>01</span><div><small>GEOMETRIC FORMULATION</small><h3>Learn a correction—not an absolute pose</h3></div></div>
 
 The calibration task is formulated as residual estimation on the rigid-motion group. An imperfect initialization renders the LiDAR observation; supervision asks the network to predict the transformation that returns that observation to the true camera geometry.
 
@@ -92,22 +85,22 @@ The calibration task is formulated as residual estimation on the rigid-motion gr
   <p class="geometry-derivation__note">Training perturbs the initialization while holding the true sensor geometry fixed. Every perturbation therefore creates a new projected depth image and a mathematically consistent SE(3) correction target.</p>
 </div>
 
-<div id="architecture" class="project-stage-heading case-study-anchor"><span>03</span><div><small>MODEL ARCHITECTURE</small><h3>Fuse appearance with 3D structure</h3></div></div>
+<div id="architecture" class="project-stage-heading case-study-anchor"><span>02</span><div><small>MODEL ARCHITECTURE</small><h3>Fuse appearance with 3D structure</h3></div></div>
 
-The network consumes camera RGB, a rasterized LiDAR inverse-depth/intensity representation, and camera identity. Its design separates global rotational reasoning from the local correspondence needed for translation:
+I designed and trained a **dual-branch network** that consumes camera RGB, a rasterized LiDAR inverse-depth/intensity representation, and camera identity. Its architecture learns cross-modal correspondence while giving rotation and translation different paths through the fused geometry:
 
 <figure class="paper-architecture">
   <div class="paper-architecture__canvas">
-    <img src="{{ '/assets/img/projects/lccnet_architecture.svg' | relative_url }}" alt="LCCNet architecture: camera and LiDAR preprocessing, dual encoders, camera FiLM, cross-attention, rotation and translation heads, and SE(3) correction composition">
+    <img src="{{ '/assets/img/projects/lccnet_architecture.svg' | relative_url }}?v=20261021-network" alt="LCCNet architecture: camera and LiDAR preprocessing, dual encoders, camera FiLM, cross-attention, rotation and translation heads, and SE(3) correction composition">
   </div>
   <figcaption><strong>Figure 1.</strong> LCCNet predicts a residual rigid transform from camera appearance and pose-conditioned LiDAR projection. Local cross-modal correspondence supports translation while coarse global geometry supports rotation.</figcaption>
 </figure>
 
-- ImageNet-pretrained **ResNet-18** RGB encoder and an independent **depth + intensity** LiDAR branch with GroupNorm.
-- Camera-conditioned **FiLM** modulation, enabling one network to model multiple camera viewpoints without duplicating the backbone.
-- Bidirectional **RGB↔LiDAR cross-attention** at higher spatial resolution for local geometric correspondence.
-- A coarse/global rotation branch and a local-plus-context translation branch for full **6-DoF** correction.
-- Quaternion normalization, geodesic rotation, robust translation, and **3D point-consistency** objectives that supervise the transform in both parameter and geometric space.
+- **Modality-specific encoders.** An ImageNet-pretrained ResNet-18 extracts RGB appearance, while an independent GroupNorm LiDAR branch encodes projected inverse depth and intensity before fusion.
+- **Camera-conditioned FiLM.** Learned feature modulation carries camera identity into the network, allowing one model to serve different camera viewpoints and projection geometries.
+- **Cross-modal attention.** Bidirectional RGB↔LiDAR attention at 1/8-scale features learns local appearance-to-geometry relationships that support correspondence-sensitive pose estimation.
+- **Separate pose heads.** Coarse/global features support rotation; a local-plus-context path supports translation. The network predicts a normalized quaternion and translation vector for a full 6-DoF residual.
+- **Geometry-aware learning.** Rotation and robust translation objectives are coupled with 3D point consistency, tying the predicted correction to the alignment it produces in physical space.
 
 <figure class="paper-architecture paper-qualitative">
   <div class="paper-architecture__canvas">
@@ -118,7 +111,7 @@ The network consumes camera RGB, a rasterized LiDAR inverse-depth/intensity repr
   <figcaption><strong>Figure 2.</strong> A fully synthetic qualitative visualization of the recovery contract. The middle row applies a coherent rigid perturbation to the LiDAR projection; the predicted result restores the structured scan pattern toward the reference alignment. No proprietary data, vehicle imagery, or hardware is shown.</figcaption>
 </figure>
 
-<div id="training" class="project-stage-heading case-study-anchor"><span>04</span><div><small>DISTRIBUTED TRAINING RUNTIME</small><h3>Scale the experiment—not the operational risk</h3></div></div>
+<div id="training" class="project-stage-heading case-study-anchor"><span>03</span><div><small>DISTRIBUTED TRAINING RUNTIME</small><h3>Scale the experiment—not the operational risk</h3></div></div>
 
 I treated training throughput as an end-to-end systems problem, not a model-only optimization. The original pipeline spent most of its roughly **60-hour** run time repeatedly executing CPU-heavy point-cloud geometry, projection, and perturbation work. I moved reusable computation out of the hot path and repackaged the dataset into sequential **TAR shards** for streaming access, reducing a representative single-accelerator run to approximately **20 hours**. I then built a world-size-configurable **PyTorch DistributedDataParallel** runtime that brought the same experiment class below **5 hours**—an approximately **13× reduction in iteration time** from the initial baseline.
 
@@ -139,24 +132,57 @@ I treated training throughput as an end-to-end systems problem, not a model-only
   </aside>
 </section>
 
-<div id="evaluation" class="project-stage-heading case-study-anchor"><span>05</span><div><small>EVALUATION</small><h3>Separate capture range from operating accuracy</h3></div></div>
+<div id="data" class="project-stage-heading case-study-anchor"><span>04</span><div><small>DATA &amp; GEOMETRY</small><h3>Convert raw fleet logs into trusted pairs</h3></div></div>
 
-<div class="impact-comparison" aria-label="LCCNet large-error recovery envelope">
-  <div class="impact-comparison__value"><span>CONTROLLED PERTURBATION</span><strong>up to 10°</strong><small>rotational disturbance</small></div>
-  <div class="impact-comparison__arrow" aria-hidden="true">→</div>
-  <div class="impact-comparison__value impact-comparison__value--after"><span>CORRECTED RESIDUAL</span><strong>≈0.5°</strong><small>controlled recovery</small></div>
-  <div class="impact-comparison__gain"><strong>SUB-1°</strong><span>recovery envelope</span></div>
+The training dataset contains approximately **100K camera–LiDAR frames**, with RGB rectified to shared virtual-camera intrinsics and LiDAR rendered as inverse depth plus intensity. The data platform is shared with LiLiNet; camera-specific synchronization and projection determine which observations are useful for this model.
+
+- Freeze the rig used for each label, using either the recording-time configuration or an explicitly revised calibration. Internal geometric consistency checks reject corrupted configurations before they enter training.
+- Pair camera and LiDAR observations on **sensor timestamps**. Per-log measurements account for different trigger behavior across compute platforms and track drift within a recording.
+- Retain the field-of-view margin needed for perturbed-prior reprojection, filter insufficient projected point support, and preserve frame-time motion metadata.
+- Deduplicate views using pose changes and select frames before downloading. Camera downloads were approximately halved in the measured collection batch.
+- Preserve validation/test partitions when adding training data; replace recollected versions of a session explicitly so old and new labels do not silently mix.
+
+The shared collector was rebuilt after measuring a drifting publication delay of approximately **126 ms**. In one measured vehicle, camera matching windows narrowed from **±100 ms to ±4 ms without frame loss**; in a separate drifting recording, usable-frame coverage rose from **8% to 100%**. These measurements describe the tested logs and motivate sensor-clock matching across the platform.
+
+{% include calibration_data_pipeline.liquid %}
+
+<div id="evaluation" class="project-stage-heading case-study-anchor"><span>06</span><div><small>EVALUATION</small><h3>Connect geometric learning to runtime behavior</h3></div></div>
+
+The deployed model improved both calibration accuracy on an unseen vehicle and fleet performance:
+
+<div class="project-results" markdown="1" role="region" aria-label="Deployed camera–LiDAR calibration results" tabindex="0">
+
+| Evaluation | Rotation error | Reprojection error |
+|---|---|---|
+| **Unseen vehicle** | **2.95° → 0.14° (−95%)** | **22.4 → 2.4 px (−89%)** |
+| **Fleet evaluation** | **−44%** | **−50%** |
+
 </div>
 
-Controlled perturbation evaluation demonstrated recovery from rotational disturbances of up to **10° to approximately 0.5° residual error**. This capture range is reported separately from operating-point accuracy: the system reached **0.31° / 3.33 cm** on fleet validation and demonstrated **sub-degree cross-vehicle generalization**, including below **0.6° rotation error** on held-out vehicle evaluation.
+The unseen-vehicle result uses the August deployed model. Fleet results use the current deployed model against nominal extrinsics, with **57% lower translation error** as well. Export and runtime checks verify preprocessing, numerical parity, and pose composition before onboard integration.
 
-<div class="project-proof-strip">
-  <div><span>FLEET VALIDATION</span><strong>0.31°</strong><small>rotation error</small></div>
-  <div><span>TRANSLATION</span><strong>3.33 cm</strong><small>validation error</small></div>
-  <div><span>HELD-OUT VEHICLE</span><strong>&lt;0.6°</strong><small>rotation error</small></div>
+<details>
+<summary>October model iterations and offline comparison</summary>
+
+The **1002 production release** was retrained after the new collector expanded the training dataset by **16%**. I exported the selected model to ONNX, converted it to TensorRT, and deployed it through the existing onboard interface.
+
+<div class="project-results" markdown="1" role="region" aria-label="Evaluation results" tabindex="0">
+
+| Version / experiment | Rotation error | Translation error | Status and measurement scope |
+|---|---|---|---|
+| Previous production model | 0.49° | 4.2 cm | Reference on 2,824 validation frames |
+| **1002 release** | **0.41°** | **3.4 cm** | Deployed; same 2,824-frame validation comparison |
+| October candidate | **0.42° → 0.31°** | — | Separate same-vehicle, different-session comparison; selected checkpoint, not yet exported or deployed |
+
 </div>
 
-<div id="deployment" class="project-stage-heading case-study-anchor"><span>06</span><div><small>PRODUCTION SYSTEM</small><h3>Ship the same geometry into C++</h3></div></div>
+The release comparison measures **offline validation improvement over the previous production model**; the fleet figures above compare the current model against nominal extrinsics. Training and validation contain different sessions from the same vehicle pool. The newer candidate also incorporates expanded data and revised labels, so its improvement reflects the combined update.
+
+</details>
+
+**Data-quality iteration.** A port of the onboard depth-distribution gate is implemented and pending merge and collection-image activation. In the measured data, it rejects **7.9%** of frames; those frames carried **2.2×** the rotation error of the retained group. Training with the filtered data is in progress. The collection speed limit is still being evaluated.
+
+<div id="deployment" class="project-stage-heading case-study-anchor"><span>07</span><div><small>PRODUCTION SYSTEM</small><h3>Ship the same geometry into C++</h3></div></div>
 
 I productionized the model through **PyTorch → ONNX → TensorRT → C++** and integrated it into the onboard autonomy stack. The runtime includes:
 
@@ -174,7 +200,7 @@ Beyond headline accuracy, I built a diagnostic framework for understanding model
 
 ## Technology
 
-`Python` · `C++` · `PyTorch` · `PyTorch DistributedDataParallel` · `NCCL` · `Distributed Sampling` · `TAR-Sharded Streaming` · `Geometry Precomputation` · `Global Metric Reduction` · `OpenCV` · `ONNX` · `TensorRT` · `CUDA` · `Protobuf` · `Docker` · `Sensor Fusion` · `3D Geometry`
+`Python` · `C++` · `PyTorch` · `PyTorch DistributedDataParallel` · `NCCL` · `Distributed Sampling` · `TAR-Sharded Streaming` · `Geometry Precomputation` · `Global Metric Reduction` · `OpenCV` · `ONNX` · `TensorRT` · `CUDA` · `Protobuf` · `Docker` · `Airflow` · `Kubernetes` · `Sensor-Clock Synchronization` · `Data Provenance` · `Sensor Fusion` · `3D Geometry`
 
 <a class="project-companion" href="{{ '/projects/lilinet-calibration/' | relative_url }}"><span>COMPANION SYSTEM</span><strong>LiLiNet · Neural LiDAR–LiDAR Calibration</strong><b>View case study →</b></a>
 

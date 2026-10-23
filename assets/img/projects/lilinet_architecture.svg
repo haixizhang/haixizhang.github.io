@@ -98,8 +98,8 @@
   <rect x="1110" y="304" width="134" height="112" rx="10" class="box output"/>
   <text x="1177" y="332" text-anchor="middle" class="blockTitle">Robust Runtime</text>
   <text x="1177" y="355" text-anchor="middle" class="blockText">multi-frame aggregation</text>
-  <text x="1177" y="376" text-anchor="middle" class="blockText">health classification</text>
-  <text x="1177" y="397" text-anchor="middle" class="tensor">T_final = ΔT T_init</text>
+  <text x="1177" y="376" text-anchor="middle" class="blockText">keep rig translation</text>
+  <text x="1177" y="397" text-anchor="middle" class="tensor">R ← ΔR R_init</text>
 
   <path d="M202 159 H240" class="line"/><path d="M428 162 H468" class="line"/>
   <path d="M202 301 H240" class="line"/><path d="M428 302 H468" class="line"/>

@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="660" viewBox="0 0 1600 660" role="img" aria-labelledby="title desc">
+  <title id="title">Shared automated calibration data pipeline</title>
+  <desc id="desc">Airflow schedules one Kubernetes Pod per log. Single-pass extraction streams 17+ TB of raw drive logs to produce approximately 600 GB of data for both calibration models. Sensor-clock alignment, traceable labels, and view selection connect collection to model training and deployment.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#577489"/></marker>
+    <style>text{font-family:Arial,sans-serif}.eyebrow{font-size:17px;font-weight:700;letter-spacing:2px;fill:#537284}.heading{font-size:25px;font-weight:700;fill:#142c3d}.body{font-size:19px;fill:#526b7d}.small{font-size:17px;fill:#637a8b}.box{fill:white;stroke:#cad8e2;stroke-width:2}.line{fill:none;stroke:#577489;stroke-width:3;marker-end:url(#arrow)}</style>
+  </defs>
+  <rect width="1600" height="660" rx="18" fill="#f3f7fa"/>
+  <text x="55" y="57" class="eyebrow">SHARED COLLECTION PLATFORM</text>
+  <text x="55" y="91" class="body">17+ TB raw logs → ~600 GB paired data · Airflow / Kubernetes · one streaming read for two models</text>
+  <rect x="55" y="155" width="300" height="185" rx="15" class="box"/>
+  <text x="82" y="195" class="eyebrow">01 · DISCOVER</text>
+  <text x="82" y="239" class="heading">Raw drive logs</text>
+  <text x="82" y="276" class="body">Scan uncollected sessions</text>
+  <text x="82" y="309" class="small">Preflight access + write checks</text>
+  <rect x="430" y="155" width="370" height="185" rx="15" class="box"/>
+  <text x="459" y="195" class="eyebrow">02 · STREAM + ALIGN</text>
+  <text x="459" y="239" class="heading">One Pod per log</text>
+  <text x="459" y="276" class="body">Sensor clocks + drift tracking</text>
+  <text x="459" y="309" class="small">Frame-time CAN and pose association</text>
+  <rect x="885" y="142" width="660" height="105" rx="15" fill="#eef6ff" stroke="#7aaee6" stroke-width="2"/>
+  <text x="914" y="185" class="heading">LCCNet · camera–LiDAR pairs</text>
+  <text x="914" y="220" class="body">RGB + projected depth / intensity + residual targets</text>
+  <rect x="885" y="272" width="660" height="105" rx="15" fill="#eef9f2" stroke="#63aa7c" stroke-width="2"/>
+  <text x="914" y="315" class="heading">LiLiNet · paired point clouds</text>
+  <text x="914" y="350" class="body">Main + blind-spot LiDAR + motion-aware selection</text>
+  <path d="M357 247H420" class="line"/>
+  <path d="M801 247H839V193H875" class="line"/>
+  <path d="M839 247V324H875" class="line"/>
+  <path d="M1215 378V423" class="line"/>
+  <rect x="55" y="435" width="1490" height="165" rx="15" fill="#142c3d"/>
+  <text x="85" y="477" style="font-size:17px;font-weight:700;letter-spacing:2px;fill:#7cd4cd">03 · PRESERVE PROVENANCE, THEN SELECT</text>
+  <text x="85" y="518" style="font-size:24px;font-weight:700;fill:white">Object storage → view deduplication → selected downloads → training → ONNX / TensorRT</text>
+  <text x="85" y="561" style="font-size:19px;fill:#d0e0e9">Frozen rig source · timing metadata · per-frame rejection reasons · dataset indexes · per-log output manifests</text>
+</svg>

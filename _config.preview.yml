@@ -22,6 +22,8 @@ imagemagick:
 # Preserve the production exclusions and additionally skip the example notebook,
 # whose converter requires a local Jupyter installation.
 exclude:
+  - OMS-PROJECT/
+  - tmp/
   - bin/
   - CONTRIBUTING.md
   - CUSTOMIZE.md

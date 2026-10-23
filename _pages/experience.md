@@ -37,7 +37,7 @@ _styles: |
     <time>Sep 2025 — Present</time>
   </header>
 
-  <p class="experience-scope"><strong>Role scope.</strong> Sole technical owner of three company-level ML/CV systems spanning multimodal calibration and in-cabin perception. I take each system from initial requirements and data contracts through independent design and implementation, partnering with infrastructure and testing teams at system boundaries; two have reached onboard production deployment, while the third remains in active validation and integration.</p>
+  <p class="experience-scope">Sole technical owner of three ML/CV systems spanning sensor calibration and occupant perception. I independently design and train the models, build their data and training pipelines, and integrate onboard inference with infrastructure and testing teams. Deployed two calibration systems to production and completed real-vehicle evaluation of integrated occupant perception.</p>
 
   <div class="experience-ownership" aria-label="Industry responsibilities and impact">
     <article>
@@ -50,36 +50,36 @@ _styles: |
     <article>
       <span>02</span>
       <div>
-        <h3>End-to-End Technical Ownership</h3>
-        <p>After aligning on high-level product direction, independently translated it into concrete requirements and implemented the core data, geometry, model, training, evaluation, and runtime components for all three systems.</p>
+        <h3>Neural Network Design &amp; Training</h3>
+        <p>Designed and trained camera–LiDAR calibration with camera-conditioned FiLM and cross-modal attention, reducing rotation error by <strong>95% (2.95° → 0.14°)</strong> on an unseen vehicle. Built LiDAR–LiDAR calibration from scratch with shared spherical encoders and circular azimuth correlation, reducing mean rotation error by <strong>83% (4.86° → 0.83°)</strong> in testing.</p>
       </div>
     </article>
     <article>
       <span>03</span>
       <div>
-        <h3>Data Infrastructure Collaboration</h3>
-        <p>Partnered with the data infrastructure team to define sensor-data formats and interfaces, validate upstream data quality, and co-develop automated data-collection tooling for scalable training and evaluation.</p>
+        <h3>Automated Sensor-Data Infrastructure</h3>
+        <p>Built and launched a shared Airflow/Kubernetes collection pipeline across two regions, streaming <strong>17+ TB of raw drive logs</strong> through single-pass extraction to produce <strong>~600 GB of camera–LiDAR and LiDAR–LiDAR calibration data</strong>. Added drift-aware synchronization, traceable calibration labels, and per-log retries; reduced the runtime image from <strong>20 GB to 600 MB</strong>.</p>
       </div>
     </article>
     <article>
       <span>04</span>
       <div>
         <h3>Production Deployment</h3>
-        <p>Owned model export, TensorRT optimization, onboard C++ integration, release validation, deployment support, and production monitoring across the complete inference path.</p>
+        <p>Deployed both calibration models through <strong>PyTorch → ONNX → TensorRT → C++</strong>, with numerical-parity checks, robust temporal aggregation, and sensor-rig updates. Fleet evaluation showed <strong>44% / 57%</strong> lower rotation/translation error for camera–LiDAR calibration and <strong>63% (0.93° → 0.35°)</strong> lower rotation error for LiDAR–LiDAR calibration.</p>
       </div>
     </article>
     <article>
       <span>05</span>
       <div>
-        <h3>Validation & Integration Debugging</h3>
-        <p>Worked directly with the testing team to design integration tests, reproduce system failures, debug data/model/runtime issues, and verify fixes in the integrated environment.</p>
+        <h3>Detector Adaptation &amp; Evaluation</h3>
+        <p>Fine-tuned RTMO-s for front- and rear-seat person detection and keypoints using targeted cabin annotations mixed with COCO data. Rear-seat forward-lean confirmation increased from 72.1% to 98.6% on reserved evaluation sessions, without increasing empty-seat false positives.</p>
       </div>
     </article>
     <article>
       <span>06</span>
       <div>
-        <h3>Production Robustness</h3>
-        <p>Hardened model outputs with validation logic, consistency checks, deterministic interfaces, and failure diagnostics to improve reliability beyond offline model accuracy.</p>
+        <h3>Integrated Occupant Perception</h3>
+        <p>Designed front- and rear-seat occupant monitoring with a ResNet-18 multi-task occupancy/posture model, RTMO detection, iToF reasoning, and VLM temporal fusion. Connected confidence-aware outputs to the vehicle interface; system benchmarks measured 99.3% occupancy F1 and 95.8% posture Macro-F1.</p>
       </div>
     </article>
   </div>
@@ -98,8 +98,8 @@ _styles: |
       <em>Production deployed</em>
     </a>
     <a href="{{ '/projects/occupant-state-monitoring/' | relative_url }}">
-      <span><b>In-Cabin Perception</b> · Occupancy &amp; Posture Classification</span>
-      <em>Active development</em>
+      <span><b>In-Cabin Perception</b> · Detection, Posture &amp; Multimodal Fusion</span>
+      <em>Vehicle evaluated</em>
     </a>
   </div>
 </section>

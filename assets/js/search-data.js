@@ -63,17 +63,17 @@ ninja.data = [{
           description: "",
           section: "News",},{id: "projects-production-grade-neural-camera-lidar-calibration",
           title: 'Production-Grade Neural Camera–LiDAR Calibration',
-          description: "End-to-end 6-DoF online calibration—from 500+ GB of multimodal sensor data to TensorRT deployment in an onboard C++ system",
+          description: "Designed, trained, and deployed camera–LiDAR calibration that reduced rotation error by 95% on an unseen vehicle",
           section: "Projects",handler: () => {
               window.location.href = "/projects/lccnet-calibration/";
             },},{id: "projects-lilinet-production-neural-lidar-lidar-calibration",
           title: 'LiLiNet: Production Neural LiDAR–LiDAR Calibration',
-          description: "Geometry-aware residual calibration—from synchronized point-cloud pairs and distributed training to TensorRT/C++ vehicle deployment",
+          description: "Built and deployed LiDAR–LiDAR calibration from scratch, reducing fleet rotation error by 63%",
           section: "Projects",handler: () => {
               window.location.href = "/projects/lilinet-calibration/";
-            },},{id: "projects-in-cabin-occupant-state-perception",
-          title: 'In-Cabin Occupant State Perception',
-          description: "Active development — dual-head seat-occupancy and occupant-posture classification from fisheye cabin imagery, with leakage-resistant data splits and a deployable ONNX contract",
+            },},{id: "projects-in-cabin-occupant-perception-system",
+          title: 'In-Cabin Occupant Perception System',
+          description: "Front- and rear-seat occupant monitoring built from RTMO detector adaptation, ResNet-18 multi-task learning, iToF reasoning, and temporally fused VLM attributes",
           section: "Projects",handler: () => {
               window.location.href = "/projects/occupant-state-monitoring/";
             },},{id: "projects-robotic-tool-handler",

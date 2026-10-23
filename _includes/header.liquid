@@ -117,6 +117,17 @@
               {% endif %}
             {% endif %}
           {% endfor %}
+          <!-- Resume (kept separate from the disabled CV page) -->
+          <li class="nav-item {% if page.permalink == '/resume/' %}active{% endif %}">
+            <a
+              class="nav-link"
+              href="{{ '/resume/' | relative_url }}"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Resume
+            </a>
+          </li>
           {% if site.search_enabled %}
             <!-- Search -->
             <li class="nav-item">

@@ -1,186 +1,125 @@
 \documentclass[letterpaper,10pt]{article}
-\usepackage{latexsym}
-\usepackage[empty]{fullpage}
-\usepackage{titlesec}
-\usepackage{marvosym}
-\usepackage[usenames,dvipsnames]{color}
+\usepackage[margin=0.5in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{charter}
 \usepackage{xcolor}
-\usepackage{verbatim}
+\usepackage{titlesec}
 \usepackage{enumitem}
 \usepackage[hidelinks]{hyperref}
-\usepackage[english]{babel}
 \usepackage{tabularx}
 \usepackage{iftex}
 \ifPDFTeX
   \input{glyphtounicode}
-\fi
-
-% Original resume typography
-\usepackage[T1]{fontenc}
-\usepackage{charter}
-
-\definecolor{cvblue}{HTML}{0E5484}
-\definecolor{black}{HTML}{130810}
-\definecolor{darkcolor}{HTML}{0F4539}
-\definecolor{cvgreen}{HTML}{3BD80D}
-\definecolor{taggreen}{HTML}{00E278}
-\definecolor{SlateGrey}{HTML}{2E2E2E}
-\definecolor{LightGrey}{HTML}{666666}
-\colorlet{name}{black}
-\colorlet{tagline}{darkcolor}
-\colorlet{heading}{darkcolor}
-\colorlet{headingrule}{cvblue}
-\colorlet{accent}{darkcolor}
-\colorlet{emphasis}{SlateGrey}
-\colorlet{body}{LightGrey}
-
-% Adjust margins
-\addtolength{\oddsidemargin}{-0.6in}
-\addtolength{\evensidemargin}{-0.5in}
-\addtolength{\textwidth}{1.19in}
-\addtolength{\topmargin}{-.7in}
-\addtolength{\textheight}{1.4in}
-\urlstyle{same}
-
-\raggedbottom
-\raggedright
-\setlength{\tabcolsep}{0in}
-\ifPDFTeX
   \pdfgentounicode=1
 \fi
 \ifXeTeX
   \XeTeXgenerateactualtext=1
 \fi
 
-% Section formatting
-\titleformat{\section}{
-  \vspace{-2pt}\scshape\raggedright\large\bfseries
-}{}{0em}{}[\color{black}\titlerule \vspace{-2pt}]
+\definecolor{cvblue}{HTML}{0E5484}
+\urlstyle{same}
+\pagenumbering{gobble}
+\raggedright
+\raggedbottom
+\setlength{\parindent}{0pt}
+\setlength{\tabcolsep}{0pt}
 
-% Custom commands
-\newcommand{\resumeItem}[1]{\item\small{#1 \vspace{-2pt}}}
+\titleformat{\section}{\normalsize\bfseries\color{cvblue}}{}{0em}{}[\color{cvblue}\titlerule]
+\titlespacing*{\section}{0pt}{8pt}{5pt}
+
+\newcommand{\resumeItem}[1]{\item {\small #1}}
 \newcommand{\resumeSubheading}[4]{
-  \vspace{-2pt}\item
-    \begin{tabular*}{1.0\textwidth}[t]{l@{\extracolsep{\fill}}r}
-      \textbf{\large #1} & {\small #2} \\
-      \textit{\small #3} & \textit{\small #4} \\
-    \end{tabular*}\vspace{-2pt}
+  \item
+  \begin{tabular*}{\linewidth}[t]{l@{\extracolsep{\fill}}r}
+    \textbf{#1} & {\small #2} \\
+    {\small\textit{#3}} & {\small\textit{#4}} \\
+  \end{tabular*}
 }
-\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{0pt}}
-\newcommand{\resumeItemListStart}{\begin{itemize}[leftmargin=0.15in, label={\color{cvblue}-}]}
-\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{0pt}}
-\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.0in, label={}]}
+\newcommand{\resumeItemListStart}{\begin{itemize}[leftmargin=0.13in,label={\color{cvblue}\textbullet},itemsep=3pt,topsep=3pt,parsep=0pt,partopsep=0pt]}
+\newcommand{\resumeItemListEnd}{\end{itemize}}
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0in,label={},itemsep=5pt,topsep=0pt,parsep=0pt,partopsep=0pt]}
 \newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
 
-%-------------------------------------------
-%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Keep this application version to one page.
+\AtEndDocument{\ifnum\value{page}>1\relax
+  \PackageError{resume}{Resume exceeds one page}{Shorten the content before exporting.}
+\fi}
 
 \begin{document}
 
-%----------HEADING----------
 \begin{center}
-    {\huge \textbf{Haixi Zhang}} \\
-    \vspace{3pt}
-    \href{https://www.linkedin.com/in/haixi-zhang-b83104251/}{\color{blue}{LinkedIn}}
-    \small{-}
-    \href{mailto:haixizhang02@gmail.com}{\color{blue}{haixizhang02@gmail.com}}
-    \small{-} {\color{blue}{(607)\,339-9816}}
-    \small{-} {\color{blue}{San Jose, CA 95113}}
-    \small{-}
-    \href{https://haixizhang.github.io/}{\color{blue}{Portfolio}}
-    \small{-}
-    \href{https://github.com/haixizhang}{\color{blue}{GitHub}}
+  {\LARGE\bfseries Haixi Zhang}\\[3pt]
+  {\small Machine Learning Engineer \,\textbar\, Computer Vision \,\textbar\, Robotics}\\[4pt]
+  {\footnotesize
+  San Jose, CA \,\textbar\,
+  (607)\,339-9816 \,\textbar\,
+  \href{mailto:haixizhang02@gmail.com}{haixizhang02@gmail.com} \,\textbar\,
+  \href{https://www.linkedin.com/in/haixi-zhang-b83104251/}{\textcolor{cvblue}{LinkedIn}} \,\textbar\,
+  \href{https://haixizhang.github.io/}{\textcolor{cvblue}{Portfolio}} \,\textbar\,
+  \href{https://github.com/haixizhang}{\textcolor{cvblue}{GitHub}}}
 \end{center}
+\vspace{-5pt}
 
-%-----------PROFILE-----------
-% \section{\color{cvblue}PROFILE}
-% \small{
-% Perception/Robotics engineer focused on \textbf{C++/Python}, building \textbf{camera–LiDAR} perception and calibration pipelines on \textbf{Linux/ROS}. Hands-on experience in \textbf{2D/3D detection, tracking, depth/point-cloud processing}, and \textbf{sensor fusion}, with deployment via Docker and system-level testing. Comfortable with real-time constraints and cross-team integration.
-% }
-% \section{\color{cvblue}PROFILE}
-% \small{
-% Sensor/ML engineer focused on \textbf{estimation and sensor-fusion algorithms} for robotics and embedded platforms.
-% Strong in \textbf{linear algebra, probability/statistics}, and \textbf{camera/LiDAR geometry and calibration}.
-% Hands-on experience building end-to-end pipelines from \textbf{data collection \& algorithm validation} (Python/PyTorch/OpenCV) to \textbf{C/C++ integration} on Linux/ROS, with attention to \textbf{latency and compute/memory tradeoffs}.
-% }
-
-%-----------EDUCATION-----------
-\section{\color{cvblue}EDUCATION}
-\resumeSubHeadingListStart
-  \resumeSubheading
-    {Cornell University}{Ithaca, NY}
-    {M.Eng in Electrical \& Computer Engineering (GPA: 3.81/4.0)}{Aug. 2024 -- May. 2025}
-  \resumeSubheading
-    {University of Rochester}{Rochester, NY}
-    {B.S. in Electrical \& Computer Engineering; Minor in Statistics (GPA: 3.86/4.0)}{Sep. 2020 -- May. 2024}
-\resumeSubHeadingListEnd
-
-%-----------TECHNICAL SKILLS-----------
-% \section{\color{cvblue}TECHNICAL SKILLS}
-% \small{
-% \textbf{Languages:} C, Python, Java, C++, Bash, MATLAB, R \\
-% \textbf{Embedded \& OS:} Embedded Linux, ROS, RTOS, ARM Cortex Microcontrollers, Sensors (ToF, IMU, LiDAR), Mixed-Signal Circuits, TCP/IP protocols,
-% Serial Protocols, BLE, Hardware Integration, SIL/HIL Testing, Schematics/PCB Reading, Windows  \\
-% \textbf{Tools:} CI/CD (GitLab), Git, Docker, Kubernetes, Logic Analyzers, Oscilloscope, Digital Multimeters \\
-% \textbf{Data \& ML:} PyTorch, HPC, Computer Vision, NLP, Nonlinear Optimization, Statistical Analysis, Multiprocessing \\
-% }
-
-\section{\color{cvblue}TECHNICAL SKILLS}
-\small{
-\textbf{Languages \& Systems:} C++, Python, CUDA, Bash, Linux, ROS/ROS2, Git, Bazel, CMake, Docker, Kubernetes \\
-\textbf{Computer Vision \& Robotics:} Camera models, multi-sensor extrinsic calibration, $SE(3)/SO(3)$, LiDAR--camera fusion, point-cloud processing, OpenCV, Eigen, PCL/Open3D, state estimation (EKF), SLAM, occupancy-grid mapping, A* planning \\
-\textbf{Machine Learning \& AI:} PyTorch, CNNs, Vision Transformers, multimodal learning, cross-attention, multi-task learning, representation learning, PyTorch DistributedDataParallel (DDP), NCCL, distributed data loading/evaluation, LLM APIs, AI agents \\
-\textbf{Production ML \& Data:} ONNX, TensorRT, C++ inference, model export and optimization, numerical-parity testing, Airflow, ETL pipelines, dataset curation, data-quality validation, production monitoring
+\section{EDUCATION}
+{\small
+\begin{tabularx}{\linewidth}{@{}Xr@{}}
+  \textbf{Cornell University}, Ithaca, NY \,\textbar\, \textit{M.Eng., Electrical \& Computer Engineering} \,\textbar\, GPA: 3.81 & \textbf{Aug. 2024 -- May 2025} \\[2pt]
+  \textbf{University of Rochester}, Rochester, NY \,\textbar\, \textit{B.S., Electrical \& Computer Engineering} \,\textbar\, GPA: 3.86 & \textbf{Sep. 2020 -- May 2024}
+\end{tabularx}
 }
 
-%-----------PROFESSIONAL EXPERIENCE-----------
-\section{\color{cvblue}PROFESSIONAL EXPERIENCE}
+\section{PROFESSIONAL EXPERIENCE}
 \resumeSubHeadingListStart
-\resumeSubheading
-  {Machine Learning Engineer, Tensor Auto}{San Jose, CA}
-    {Production Computer Vision, 3D Geometry, Multimodal Learning, Onboard Inference}{Sep. 2025 -- Present}
+  \resumeSubheading
+    {Machine Learning Engineer, Tensor Auto \textnormal{\small\,\textbar\, Technical Owner: 3 ML/CV Systems}}{San Jose, CA}
+    {3D Vision, Multimodal Learning, Python/C++, PyTorch/DDP, VLMs, ONNX/TensorRT, Airflow/Kubernetes, S3}{Sep. 2025 -- Present}
     \resumeItemListStart
-      \resumeItem{Own three company-level ML/CV systems as sole technical owner, taking two from initial requirements to onboard production deployment and leading the third from requirements through active validation and integration.}
-      \resumeItem{Designed a residual extrinsic-calibration framework spanning camera--LiDAR 6-DoF alignment and LiDAR--LiDAR rotational alignment, combining differentiable projection and depth rasterization, $SE(3)/SO(3)$ correction modeling, multimodal feature fusion, and geometry-aware objectives.}
-      \resumeItem{Co-developed Airflow/Kubernetes data pipelines and curated 50K+ training pairs from 500+ GB of multimodal sensor logs; both calibration systems recovered controlled rotational perturbations up to $10^\circ$ to approximately $0.5^\circ$ residual, while LiDAR--LiDAR evaluation improved rotation by 62.5\% across 95.9\% of held-out frames.}
-      \resumeItem{Re-engineered CPU-heavy camera--LiDAR training via geometry precomputation and TAR-sharded streaming, reducing single-accelerator runs from $\sim$60 to $\sim$20 hours; built world-size-configurable PyTorch DistributedDataParallel/NCCL with deterministic sharding and globally correct evaluation to reach $<$5 hours ($\sim$13$\times$ overall), while profiling LiDAR--LiDAR scale-out limits to CPU-side projection and point correspondence.}
-      \resumeItem{Lead development of an in-cabin seat-occupancy and occupant-posture classification system from fisheye imagery, establishing session-isolated evaluation, multi-seed benchmarking, class-imbalance diagnostics, deterministic output gating, and an ONNX-compatible production contract.}
+      % Camera--LiDAR: OOD result uses the August deployed version; fleet result
+      % uses the current deployed version, compared with nominal extrinsics.
+      % LiDAR--LiDAR: 83% uses the stress-test version; 63% uses fleet evaluation
+      % of the current deployed version.
+      % Omit vehicle counts and sensor configuration counts from this source.
+      \resumeItem{Designed and trained a \textbf{6-DoF camera--LiDAR calibration network} with ResNet-18 RGB/GroupNorm LiDAR encoders, \textbf{camera-conditioned FiLM}, and \textbf{cross-modal attention}, using $SO(3)$ and 3D point-consistency losses; reduced rotation error by \textbf{95\% (2.95$^\circ$ $\rightarrow$ 0.14$^\circ$)} and reprojection error by \textbf{89\% (22.4 $\rightarrow$ 2.4 px)} on an \textbf{unseen vehicle}.}
+      \resumeItem{Built a \textbf{LiDAR--LiDAR calibration network from scratch} using shared GroupNorm spherical-image encoders, \textbf{circular azimuth correlation}, and sensor-conditioned rotation/multi-scale translation heads; reduced mean rotation error by \textbf{83\% (4.86$^\circ$ $\rightarrow$ 0.83$^\circ$)} in testing and \textbf{63\% (0.93$^\circ$ $\rightarrow$ 0.35$^\circ$)} in fleet evaluation.}
+      % Shared October collection: 17+ TB is the measured lower bound on raw logs;
+      % approximately 600 GB rounds the combined 558 GB output of both datasets.
+      \resumeItem{Built a \textbf{two-region Airflow/Kubernetes} pipeline that streamed \textbf{17+ TB of raw drive logs from Amazon S3} in a single pass, producing \textbf{$\sim$600 GB of camera--LiDAR and LiDAR--LiDAR calibration data}, with sensor-clock drift tracking, pose-aware view selection, frozen rig labels, and per-log retries; shrank the runtime image \textbf{20 GB $\rightarrow$ 600 MB}.}
+      \resumeItem{Accelerated camera--LiDAR training from \textbf{$\sim$60 hours to $<$5 hours ($\sim$13$\times$)} through geometry precomputation, TAR-sharded streaming, and \textbf{PyTorch DDP/NCCL}; implemented deterministic sharding, duplicate-free globally aggregated validation, and full-state checkpoint recovery.}
+      \resumeItem{Deployed both calibration models via \textbf{PyTorch $\rightarrow$ ONNX $\rightarrow$ TensorRT $\rightarrow$ C++}, with numerical-parity checks, preprocessing alignment, quaternion-aware aggregation, and MAD outlier rejection; camera--LiDAR fleet evaluation showed \textbf{44\%/57\%} lower rotation/translation errors and \textbf{50\%} lower reprojection error versus nominal extrinsics.}
+      \resumeItem{Fine-tuned \textbf{RTMO-s for front- and rear-seat person detection and keypoints} using targeted cabin annotations and COCO data; increased end-to-end recall for held-out forward-leaning rear-seat occupants from \textbf{72.1\% to 98.6\%}, with no increase in empty-seat false positives.}
+      \resumeItem{Designed and delivered \textbf{front- and rear-seat occupant monitoring}, integrating person detection, \textbf{ResNet-18 occupancy/posture classification} trained with masked multi-task losses, iToF seating-position reasoning, and \textbf{VLM temporal fusion} with occupant-change resets and confidence-aware vehicle messaging; system benchmarks reached \textbf{99.3\% occupancy F1} and \textbf{95.8\% posture Macro-F1} in real-vehicle testing.}
     \resumeItemListEnd
 
   \resumeSubheading
     {Undergraduate Research Assistant}{University of Rochester, ECE Department}
-    {Python, PyTorch, C, Graph Learning, HPC, Docker/Kubernetes}{Jan. 2023 -- May 2024}
+    {Python, PyTorch, Graph Learning, HPC, Docker/Kubernetes}{Jan. 2023 -- May 2024}
     \resumeItemListStart
-    \resumeItem{Built reproducible HPC pipelines for graph learning and nature-inspired models in financial and power-system applications, improving benchmark performance by up to 25\% and containerizing distributed experiments with Docker/Kubernetes.}
+      \resumeItem{Built reproducible PyTorch/HPC pipelines for graph learning and nature-inspired models in financial and power-system applications, improving benchmark performance by up to \textbf{25\%}; containerized distributed experiments with Docker/Kubernetes.}
     \resumeItemListEnd
 \resumeSubHeadingListEnd
-%-----------PROJECTS \& EXPERIENCE-----------
-\section{\color{cvblue}SELECTED RESEARCH \& PROJECTS}
+
+\section{TECHNICAL SKILLS}
+{\small
+\textbf{Languages \& Systems:} C++, Python, CUDA, Bash, Linux, ROS/ROS2, Git, Bazel, CMake \\
+\textbf{ML \& Perception:} PyTorch, CNNs/Transformers, cross-attention, multimodal learning, detector fine-tuning, VLM APIs, temporal fusion, RTMO/MMPose \\
+\textbf{3D Vision \& Robotics:} Extrinsic calibration, $SE(3)/SO(3)$, camera models, point clouds, OpenCV, Eigen, PCL/Open3D, EKF, SLAM \\
+\textbf{ML Systems \& Data:} DDP/NCCL, ONNX, TensorRT, Docker, Kubernetes, Airflow, Amazon S3, sensor synchronization, numerical-parity testing
+}
+
+\section{SELECTED ENGINEERING PROJECTS}
 \resumeSubHeadingListStart
   \resumeSubheading
-    {Robotic Tool Handler (Senior Design)}{University of Rochester, Lead Developer}
-    {C++, ROS, NVIDIA Jetson, Real-time Perception \href{https://github.com/haixizhang/Robotic-Tool-Handler}{\color{blue}\underline{GitHub}}}{Jan. 2024 -- Jun. 2024}
+    {Robotic Tool Handler}{University of Rochester}
+    {Lead Developer \,\textbar\, C++, ROS, NVIDIA Jetson \,\textbar\, \href{https://github.com/haixizhang/Robotic-Tool-Handler}{\textcolor{cvblue}{GitHub}}}{Jan. 2024 -- Jun. 2024}
     \resumeItemListStart
-      \resumeItem{Led perception and system integration for a seven-member robotics team; deployed a containerized ROS vision pipeline on NVIDIA Jetson, improved throughput by 20\%, and built GitLab CI with software- and hardware-in-the-loop validation.}
-      \resumeItem{Developed real-time 3D object detection and classification by fusing camera and LiDAR evidence, achieving sub-20 ms inference latency and improving mean average precision by 25\%.}
+      \resumeItem{Led perception and integration for a seven-member robotics team; deployed camera--LiDAR perception on NVIDIA Jetson with \textbf{sub-20 ms inference}, containerized ROS services, and GitLab CI with software-/hardware-in-the-loop validation.}
     \resumeItemListEnd
-
   \resumeSubheading
-    {Robot Mapping, Estimation, and Navigation}{University of Rochester, Solo Developer}
-    {ROS, C++, LiDAR, Kalman Filter, TurtleBot2 \href{https://github.com/haixizhang/Robot-Mapping-Estimation-Interaction}{\color{blue}\underline{GitHub}}}{Jan. 2024 -- May. 2024}
+    {Robot Mapping, Estimation \& Navigation}{University of Rochester}
+    {Solo Developer \,\textbar\, ROS, C++, LiDAR, TurtleBot2 \,\textbar\, \href{https://github.com/haixizhang/Robot-Mapping-Estimation-Interaction}{\textcolor{cvblue}{GitHub}}}{Jan. 2024 -- May 2024}
     \resumeItemListStart
-      \resumeItem{Implemented and deployed a C++/ROS navigation stack on TurtleBot2, integrating RGB-D, LiDAR, and wheel odometry for EKF-based state estimation, occupancy-grid mapping, A* planning, and sensor fault detection.}
-      \resumeItem{Reduced localization error by 10\% and planning time by 15\% through EKF tuning, occupancy-map parameterization, and unit-tested sensor integration and failure handling.}
-    \resumeItemListEnd
-
-  \resumeSubheading
-    {Monocular Real-time Perception for Autonomous Driving}{University of Rochester}
-    {Python, PyTorch, Computer Vision, Depth Estimation \href{https://github.com/EnisZuo/LRHPerception}{\color{blue}\underline{GitHub}}}{Apr. 2023 -- Aug. 2023}
-    \resumeItemListStart
-      \resumeItem{Designed a 30+ FPS multi-task perception pipeline combining object tracking, trajectory prediction, road segmentation, and monocular depth estimation through shared visual features and lightweight task decoders.}
+      \resumeItem{Built a C++/ROS navigation stack integrating RGB-D, LiDAR, and wheel odometry for \textbf{EKF state estimation}, occupancy mapping, and A* planning; reduced localization error \textbf{10\%} and planning time \textbf{15\%}.}
     \resumeItemListEnd
 \resumeSubHeadingListEnd
-
-
 
 \end{document}
